@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/pages/templete/templete.xhtml">
+        <ui:define name="body">
+            <h:form id="formEdicao">
+                <p:tabView id="tabView">
+                    <p:tab title="Upload Arquivo" >
+                        <h:panelGrid >
+                            <p:fileUpload id="fileUpload"
+                                          fileUploadListener="#{uploadedFileMb.upload}"
+                                          update="@form :formMessagens"
+                                          label="Escolher" 
+                                          uploadLabel="Enviar"
+                                          cancelLabel="Cancelar" 
+                                          sizeLimit="102400"
+                                          invalidSizeMessage="O tamanho máximo permitido é de 1KB."
+                                          fileLimit="1"
+                                          fileLimitMessage="Só é possível escolher 1 arquivos por vez."
+                                          multiple="false" 
+                                          auto="false"
+                                          onstart="console.log('Iniciando envio de arquivo')"
+                                          onerror="console.log('Erro na requisição de envio')"
+                                          oncomplete="console.log('Envio concluído')" />
+
+                            <br/>
+                            <p:dataTable id="dataTableUpdateFaile" value="#{uploadedFileMb.fileList}" var="file" emptyMessage="Registro não encontrado.">
+                                <p:column headerText="Nome">
+                                    <h:outputText value="#{file.name}" />
+                                </p:column>
+
+                                <p:column style="width: 100px ;text-align: center">
+                                    <p:commandButton value="Baixar" ajax="false"
+                                                     actionListener="#{uploadedFileMb.descarregar(file)}">
+                                        <p:fileDownload value="#{uploadedFileMb.getStreamedContent}" />
+                                    </p:commandButton>
+                                </p:column>
+                                <p:column style="width: 100px ;text-align: center">
+                                    <p:commandButton value="Excluir" 
+                                                     action="#{uploadedFileMb.excluir(file)}"
+                                                     process="@this"
+                                                     update="@form">
+                                    </p:commandButton>
+                                </p:column>
+                            </p:dataTable>
+
+                            <br/>
+                            <p:dataTable id="dataTableRegistroImportacao"
+                                         value="#{uploadedFileMb.registro.registroImportacaoList}"
+                                         var="registroImportacao" 
+                                         emptyMessage="Registro não encontrado.">
+
+    
+                                <p:column headerText="Nome Aluno">
+                                    <h:outputText value="#{registroImportacao.nomeAluno}" />
+                                </p:column>
+                                <p:column headerText="Nome Responsável">
+                                    <h:outputText value="#{registroImportacao.nomeResponsavel}" />
+                                </p:column>
+                                <p:column headerText="CPF Responsável" style="text-align: center; width: 200px">
+                                    <h:outputText value="#{registroImportacao.cpfResponsavel}" />
+                                </p:column>
+                                <p:column headerText="Inconsistência" style="text-align: center; width: 200px">
+                                    <h:outputText />
+                                </p:column>
+                            </p:dataTable>
+                        </h:panelGrid>
+                        <p:commandButton value="Baixar Excel" ajax="false">
+                            <p:dataExporter type="xls" target=":formEdicao:tabView:dataTableRegistroImportacao" fileName="inconsistencia"   />
+                        </p:commandButton>
+                    </p:tab>
+                    <p:tab title="Histórico" >
+
+                    </p:tab>
+                </p:tabView>
+                <h:panelGrid columns="6">
+                    <p:commandButton value="Inserir" 
+                                     action="#{uploadedFileMb.inserir()}"
+
+                                     class="btn btn-primary" />
+                    <p:commandButton value="Salvar" 
+                                     action="#{uploadedFileMb.salvar()}" 
+
+                                     class="btn btn-success" />
+                    <p:commandButton value="Alterar" 
+                                     action="#{uploadedFileMb.alterar()}"
+
+                                     class="btn btn-warning" />
+                    <p:commandButton value="Cancelar" 
+                                     action="#{uploadedFileMb.cancelar()}"
+                                     class="btn btn-info" />
+                    <p:commandButton value="Excluir"
+                                     action="#{uploadedFileMb.excluir()}"
+                                     class="btn btn-danger" />
+                    <p:commandButton value="Processar"
+                                     action="#{uploadedFileMb.processar()}"
+                                     class="btn btn-danger" />
+                </h:panelGrid>
+            </h:form>
+        </ui:define>
+    </ui:composition>    
+</html>
+

@@ -1,0 +1,118 @@
+/* 
+    Document   : main.css
+    Created on : 25/05/2015, 17:32:53
+    Author     : Daniel-Salles
+*/
+
+.ui-panel {
+    background: rgb(250,250,255);
+}
+.ui-separator{
+    width: 100%; 
+    height: 3px; 
+    border-color: #27AAE1;
+}
+.ui-item { 
+    color: #27AAE1!important; 
+}
+.ui-item:hover { 
+    color: #888!important; 
+}
+.ui-breadcrumb {
+    background: red;
+    margin: -5px 0px 10px 0px;
+    padding: 5px!important;
+}
+.ui-breadcrumb:hover {
+    background: none; 
+}
+#panel-aluno{
+    border-radius: 0px!important;
+}
+#inputRibbon{ 
+    width: 100%!important;
+}
+#btnRibbon{ 
+    width: 100%!important; 
+    margin-top: 0px;
+}
+#container-btnRibbon{ 
+    float: left; 
+    width: 100px; 
+    margin-right: 10px!important; 
+}
+#container-inputRibbon{ 
+    float: right; 
+    width: 311px; 
+    margin-right: 20px!important; 
+}
+
+/* .ui-selectonemenu       = container do componente */
+/* .ui-selectonemenu-label = fundo do componente     */
+
+
+
+.ui-inputtext[id="matricula"]{ width: 92% }
+.ui-inputtext[id="nome"]{ width: 98% }
+
+.ui-inputmask[id="cpf"]{ width: 95% }
+.ui-selectonemenu[id="sexo"]{ width: 95%!important; }
+.ui-selectonemenu[id="estCivil"]{ width: 95%!important; }
+
+.ui-inputmask[id="dataNasc"]{ width: 95% }
+.ui-inputtext[id="localNasc"]{ width: 95% }
+.ui-selectonemenu[id="ufNasc"]{ width: 95%!important; }
+
+.ui-inputtext[id="rg"]{ width: 94% }
+.ui-inputtext[id="orgExp"]{ width: 94% }
+.ui-inputmask[id="dataExp"]{ width: 94% }
+.ui-selectonemenu[id="ufRg"]{ width: 93%!important; }
+
+.ui-inputtext[id="nomePai"], 
+.ui-inputtext[id="nomeMae"]{ width: 97%!important; }
+
+#inputPesquisaResp{ width: 97%!important; } 
+#labelPesquisaResp{ width: 97%!important; }
+#labelPesquisaResp{ line-height: 300%; font-size: 11px; font-style: italic}
+
+#perfis, 
+#status{ width: 96%!important; }
+
+/* Landscape phone to portrait tablet */
+@media (min-width:641px) and (max-width: 960px) {
+    .ui-inputtext, 
+    .ui-inputmask{ width: 85%!important; }
+    .ui-selectonemenu[id="sexo"], 
+    .ui-selectonemenu[id="estCivil"],
+    .ui-selectonemenu[id="ufNasc"],
+    .ui-selectonemenu[id="ufRg"]{ width: 84%!important; }
+    .ui-selectonemenu-label { width: 100%!important; }
+}
+
+/* Landscape phone to portrait tablet */
+@media (min-width:481px) and (max-width: 640px) {
+    .ui-inputtext, 
+    .ui-inputmask{ width: 85%!important; }
+    .ui-selectonemenu[id="sexo"], 
+    .ui-selectonemenu[id="estCivil"],
+    .ui-selectonemenu[id="ufNasc"],
+    .ui-selectonemenu[id="ufRg"]{ width: 84%!important; }
+    .ui-selectonemenu-label { width: 100%!important; }
+
+    .ui-inputtext[id="nomePai"]{ width: 85%!important; }
+    .ui-inputtext[id="nomeMae"]{ width: 85%!important; }
+}
+
+/* Portrait phones and down */
+@media (min-width:320px) and (max-width: 480px) {
+    .ui-inputtext, 
+    .ui-inputmask{ width: 95%!important; }
+    .ui-selectonemenu[id="sexo"], 
+    .ui-selectonemenu[id="estCivil"],
+    .ui-selectonemenu[id="ufNasc"],
+    .ui-selectonemenu[id="ufRg"]{ width: 94%!important; }
+    .ui-selectonemenu-label { width: 100%!important; }
+
+    .ui-inputtext[id="nomePai"]{ width: 95%!important; }
+    .ui-inputtext[id="nomeMae"]{ width: 95%!important; }
+}

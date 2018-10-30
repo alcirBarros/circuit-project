@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"  >
+
+    <h:head>
+        <ui:insert name="head" >
+            <title>#{msg['message.welcome']}</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+            <h:outputStylesheet library="css" name="main.css"/>
+        </ui:insert>
+    </h:head>
+
+    <h:body>
+        <ui:insert name="bodyHeader"/>
+        <p:growl id="growlMenssagem" showDetail="true" showSummary="true" />
+
+        <h:panelGrid columns="2">
+            <h:panelGrid>
+                <ui:insert name="bodyMenu"/>
+            </h:panelGrid>
+            <h:panelGrid>
+                <p:messages id="versionMessages" closable="true" escape="false" showDetail="true"/>
+                <ui:insert name="body"/>
+            </h:panelGrid>
+        </h:panelGrid>
+
+        <ui:insert name="bodyFooter">
+            <h:form id="formFooter" style="text-align:-webkit-center" >
+                <h:panelGrid class="footer" style="idth: 100%; margin-top: 50px; height: 55px;text-align: center;padding: 10px;" >
+                    <p:outputLabel value="(12)3922-9189"/>
+                    <p:outputLabel value="suporte@multfacilcomercial.com.br"/>
+                    <p:outputLabel value="Copyright © 2018. Todos os direitos reservados - EducaFacil - MultFacil Comercial"/>
+                </h:panelGrid>
+            </h:form>
+        </ui:insert>
+    </h:body>
+</html>
+

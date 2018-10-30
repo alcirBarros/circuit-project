@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    
+
+
+    <ui:composition template="/pages/templete/templete.xhtml">
+        <ui:define name="body">
+            <h:form >
+                <p:tabView>
+                    <p:tab title="Cliente" >
+                        <p:dataTable id="dataTableCliente"
+                                     emptyMessage="Não há registros"
+                                     value="#{clienteMb.clienteList}"
+                                     class="table table-condensed"
+                                     var="cliente"
+                                     rowKey="#{cliente.id}"
+                                     style=" width: 500px">
+                            <p:column>
+                                <f:facet name="header">Código</f:facet>
+                                <h:outputText value="#{cliente.id}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">Cliente</f:facet>
+                                <h:outputText value="#{cliente.cliente}"/>
+                            </p:column>
+                            <p:column style="width: 100px; text-align: center">
+                                <p:commandLink value="Editar"
+                                               action="#{clienteMb.visualizar()}"
+                                               process="@this"
+                                               update="@form">
+                                    <f:setPropertyActionListener value="#{cliente}" target="#{clienteMb.cliente}" />
+                                </p:commandLink>
+                            </p:column>
+                        </p:dataTable>
+                    </p:tab>
+                    <p:tab title="Cliente">
+                        <h:panelGrid columns="2">
+                            <h:panelGrid>
+                                <h:outputLabel value="Código"/>
+                                <h:inputText value="#{clienteMb.cliente.id}" disabled="true" style="width: 60px"/>
+                            </h:panelGrid>
+                            <h:panelGrid>
+                                <h:outputLabel value="Nome"/>
+                                <h:inputText value="#{clienteMb.cliente.cliente}"  style="width: 380px"/>
+                            </h:panelGrid>
+                        </h:panelGrid>
+                        <h:panelGrid columns="2">
+                            <h:panelGrid>
+                                <h:outputLabel value="Telefone"/>
+                                <h:inputText value="#{clienteMb.cliente.telefone}"  style="width: 140px"/>
+                            </h:panelGrid>
+                            <h:panelGrid>
+                                <h:outputLabel value="E-mail"/>
+                                <h:inputText value="#{clienteMb.cliente.email}"  style="width: 300px"/>
+                            </h:panelGrid>
+                        </h:panelGrid>
+                        <h:panelGrid>
+                            <h:outputLabel value="Endereço"/>
+                            <h:inputText value="#{clienteMb.cliente.endereco}"  style="width: 445px"/>
+                        </h:panelGrid>
+                        <div class="ui-widget-content" style="margin-top: 5px; margin-bottom: 10px"/>
+                        <h:panelGrid columns="3"  >
+                            <h:panelGrid >
+                                <h:outputLabel value="Data Hora"/>
+                                <p:calendar pattern="dd/MM/yyyy HH:mm:ss" size="15"/>
+                            </h:panelGrid>
+                            <h:panelGrid>
+                                <h:outputLabel value="Descrição"/>
+                                <h:inputText style="width: 220px"/>
+                            </h:panelGrid>
+                            <h:commandButton value="Adicionar"  
+                                             action="#{clienteMb.adicionar()}"
+                                             class="btn btn-success" />
+                        </h:panelGrid>
+                        <br/>
+                        <p:dataTable 
+                            class="table table-condensed"
+                            emptyMessage="Não há registros"
+                            var="contatoRealizado"
+                            rowKey="#{contatoRealizado.id}"
+                            style=" width: 500px">
+                            <p:column>
+                                <f:facet name="header">Data</f:facet>
+                                <h:outputText value="#{contatoRealizado.date}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy HH:mm" type="date" dateStyle="short" />
+                                </h:outputText>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">Descrição</f:facet>
+                                <h:outputText value="#{contatoRealizado.descricao}"/>
+                            </p:column>
+                            <p:column style="width: 100px; text-align: center">
+                                <p:commandLink value="Editar"
+                                               process="@this">
+                                    <f:setPropertyActionListener value="#{contatoRealizado}" target="#{clienteMb.contatoRealizado}" />
+                                </p:commandLink>
+                            </p:column>
+                        </p:dataTable>
+                    </p:tab>
+                </p:tabView>
+                <h:panelGrid columns="5">
+                    <p:commandButton value="Inserir" 
+                                     action="#{clienteMb.inserir()}"
+
+                                     class="btn btn-primary" />
+                    <p:commandButton value="Salvar" 
+                                     action="#{clienteMb.salvar()}" 
+                                     class="btn btn-success" 
+                                     update="@form"/>
+                    
+                    <p:commandButton value="Alterar" 
+                                     action="#{clienteMb.alterar()}"
+ 
+                                     class="btn btn-warning" />
+                    <p:commandButton value="Cancelar" 
+                                     action="#{clienteMb.cancelar()}"
+                                     class="btn btn-info" />
+                    <p:commandButton value="Excluir"
+                                     action="#{clienteMb.excluir()}"
+
+                                     class="btn btn-danger" />
+                </h:panelGrid>
+            </h:form>
+        </ui:define>
+    </ui:composition>    
+</html>
+

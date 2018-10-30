@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:ps="http://primefaces.org/sentinel">
+
+    <ui:composition template="/WEB-INF/templete/templete.xhtml">
+        <ui:define name="head">
+            <title>#{msg['message.welcome']}</title>
+
+            <f:facet name="first">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+                <meta name="apple-mobile-web-app-capable" content="yes" />
+                <meta name="theme-color" content="turquoise" />
+            </f:facet>
+
+            <h:outputStylesheet library="css" name="principal.css"/>  
+            <h:outputScript name="js/layout.js" library="sentinel-layout" />
+        </ui:define>
+
+
+        <ui:define name="bodyHeader">
+
+            <h:form id="formTop">
+                <div id="layout-header" class="Unselectable fontRegular">
+                    <a href="dashboard.xhtml" style="margin-left: 15px">
+                        <h:graphicImage name="images/mult_logo_branco_1.png"  width="120px" library="sentinel-layout" />
+                    </a>
+                    <ul id="sm-topmenu" class="layout-header-widgets white Fs14">
+                        <li class="Fleft BordRadHalf TexAlCenter"><i class="icon-user-male"></i>
+                            <ul class="layout-header-widgets-submenu BordRad5 shadows white Animated05">
+                                <li class="Animated05"><a class="white Unselectable"><i class="icon-user-male Fs26 OvHidden"></i>
+                                        <span class="Fs18">
+                                            <h:outputText value="#{acessosBean.usuarioLogado.login.toUpperCase()}" styleClass="FontBold hardblue" />
+                                            <br/>
+                                            <span class="Fs11">
+                                                <h:outputText value="#{acessosBean.usuarioLogado.perfilDTO.descricao}" styleClass="FontBold hardblue" />
+                                            </span>
+                                        </span></a></li>
+
+                                <li class="Animated05">
+                                <p:commandLink  class="white Unselectable" action="/pages/usuario/meusDados.xhtml?faces-redirect=true"  ajax="false" immediate="true" style="text-decoration: none; ">
+                                    <i class="icon-users-2 white"></i> <h:outputText value="Editar Perfil" styleClass="white"/>
+                                </p:commandLink>
+
+                        </li>
+                        <li class="Animated05">
+                        <p:commandLink  class="white Unselectable" oncomplete="PF('loginDialog').show()" style="text-decoration: none; ">
+                            <i class="icon-lock white"></i> <h:outputText value="Trocar Senha" styleClass="white"/>
+                        </p:commandLink>
+                        </li>
+                    </ul>
+                    </li>
+
+                    <li class="Fleft BordRadHalf TexAlCenter"><i class="icon-home"></i>
+                        <ul class="layout-header-widgets-submenu BordRad5 shadows white Animated05">
+                            <c:forEach items="#{minhasTurmasBean.listarEscolaProfessor()}" var="escolaProf" >
+                                <li class="Animated05"><p:commandLink update=":formTop" rendered="#{principalBean.escolaDTO.idEscola != escolaProf.idEscola}" action="#{principalBean.alterarInstituicaoGlobal(escolaProf)}" ajax="false" immediate="true" style="text-decoration: none; color: white !important">
+                                    <i class="fa fa-square-o"></i><h:outputText value="#{escolaProf.descricao}" />
+                                </p:commandLink></li>                        
+                                <li class="Animated05"><p:commandLink update=":formTop" rendered="#{principalBean.escolaDTO.idEscola == escolaProf.idEscola}" action="#{principalBean.alterarInstituicaoGlobal(escolaProf)}" ajax="false" immediate="true" style="text-decoration: none; ">
+                                    <i class="fa fa-check-square-o"></i><h:outputText value="#{escolaProf.descricao}" />
+                                </p:commandLink></li>                        
+                            </c:forEach>
+                        </ul>
+                    </li>
+
+
+
+                    <li class="Fleft BordRadHalf TexAlCenter"> 
+                    <p:commandLink id="topMenuComunicados" action="/pages/comunicados/exibirComunicados.xhtml?faces-redirect=true" immediate="true" ajax="false" style="text-decoration: none !important; color: white !important; margin-right: auto !important">
+                        <i class="icon-bell Fs16"></i>
+                        <p:outputLabel rendered="#{principalBean.quantidadeComunicadosNovos() > 0}" >
+                            <span class="alertBubble BordRad10 Fs9" >#{principalBean.quantidadeComunicadosNovos()}</span>
+                        </p:outputLabel>
+                    </p:commandLink>
+                    </li>
+
+
+                    <li class="Fleft BordRadHalf TexAlCenter"><i class="icon-lifebuoy"></i>
+                        <ul class="layout-header-widgets-submenu BordRad5 shadows white Animated05">
+                            <li class="Animated05"><a href="#" class="white Unselectable"><i class="icon-lifebuoy"></i>Ajuda</a></li>
+                        </ul>
+                    </li>
+                    <li class="Fleft BordRadHalf TexAlCenter">
+                    <p:commandLink id="meuCalendario" action="/pages/funcionario/calendario/meuCalendario.xhtml?faces-redirect=true" immediate="true" ajax="false" style="text-decoration: none !important; color: white !important; margin-right: auto !important">                
+                        <i class="icon-calendar Fs16"></i><p:outputLabel rendered="#{principalBean.quantidadeEventosHoje() > 0}" ><span class="alertBubble BordRad10 Fs9" >#{principalBean.quantidadeEventosHoje()}</span></p:outputLabel>
+                        <ul class="layout-header-widgets-submenu BordRad5 shadows white Animated05">
+
+                        </ul>
+                    </p:commandLink>
+                    </li>
+                    <li class="Fleft BordRadHalf TexAlCenter"><i class="icon-power"></i>
+                        <ul class="layout-header-widgets-submenu BordRad5 shadows white Animated05">
+
+                            <li class="Animated05"><p:commandLink ajax="false" action="#{loginBean.fazerLogoff()}" styleClass="white Unselectable" style="text-decoration: none !important"><i class="icon-logout"></i>Sair</p:commandLink></li>
+                    </ul>
+                    </li>
+                    </ul>
+                    <!-- NEVER REMOVE FOLLOWING 'UL' TAG ! BECAUSE THIS CONTAINS RESPONSIVE MODE HEADER MENU OPEN-CLOSE BUTTON -->
+                    <ul id="sm-mobiletopmenu" class="layout-header-widgets white Fs14">
+                        <li class="Fleft BordRadHalf TexAlCenter Animated05 DisplayOnResponsive"><i class="icon-th-1"></i></li>
+                    </ul>
+                    <!-- ****** -->
+                </div>
+            </h:form>
+        </ui:define>
+
+        <ui:define name="bodyMenu">
+
+            <div id="layout-menubar" class="Unselectable fontRegular">
+                <div class="layout-menubarinner-box" id="buttonArea">
+                    <a href="#" id="layout-menubar-resize" class="BordRad3" title="Menu Resize"><i class="icon-th-list-2"></i></a>
+                    <a href="#" id="layout-menubar-resize2" class="BordRad3" title="Open Menu"><i class="icon-menu"></i></a>
+                </div>
+                <h:form>
+                    <ps:menu id="sm_leftmenu" style="text-align: left!important;" model="#{principalMb.model}"/>
+                </h:form>
+            </div>
+
+   
+        </ui:define>
+
+
+    </ui:composition>
+</html>
+

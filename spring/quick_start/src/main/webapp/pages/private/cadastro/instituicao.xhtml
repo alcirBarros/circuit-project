@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/pages/templete/templete.xhtml">
+        <ui:define name="body">
+            <h:form id="formBody" >
+                <p:tabView id="tabView">
+                    <p:tab title="Instituição" >
+                        <p:dataTable id="dataTableCliente"
+                                     emptyMessage="Não há registros"
+                                     value="#{instituicaoMb.instituicaoList}"
+                                     class="table table-condensed"
+                                     var="instituicao"
+                                     rowKey="#{instituicao.id}"
+                                     style=" width: 100%">
+                            <p:column>
+                                <f:facet name="header">Código</f:facet>
+                                <h:outputText value="#{instituicao.id}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">Instituição</f:facet>
+                                <h:outputText value="#{instituicao.nomeFantasia}"/>
+                            </p:column>
+                            <p:column style="width: 100px; text-align: center">
+                                <p:commandLink value="Editar"
+                                               action="#{instituicaoMb.visualizar()}"
+                                               process="@this"
+                                               update="@form">
+                                    <f:setPropertyActionListener value="#{instituicao}" target="#{instituicaoMb.instituicao}" />
+                                </p:commandLink>
+                            </p:column>
+                        </p:dataTable>
+                    </p:tab>
+                    <p:tab title="Instituição">
+                        <h:panelGrid columns="2">
+                            <h:panelGrid>
+                                <h:outputLabel value="Código"/>
+                                <h:inputText value="#{instituicaoMb.instituicao.id}" disabled="true" style="width: 60px"/>
+                            </h:panelGrid>
+                            <h:panelGrid>
+                                <h:outputLabel value="Nome"/>
+                                <h:inputText value="#{instituicaoMb.instituicao.nomeFantasia}"  style="width: 380px"/>
+                            </h:panelGrid>
+                        </h:panelGrid>
+                        <h:panelGrid columns="2">
+                            <h:panelGrid>
+                                <h:outputLabel value="Telefone"/>
+                                <h:inputText value="#{instituicaoMb.instituicao.telefone}"  style="width: 140px"/>
+                            </h:panelGrid>
+                            <h:panelGrid>
+                                <h:outputLabel value="E-mail"/>
+                                <h:inputText value="#{instituicaoMb.instituicao.email}"  style="width: 300px"/>
+                            </h:panelGrid>
+                        </h:panelGrid>
+                        <h:panelGrid>
+                            <h:outputLabel value="Endereço"/>
+                            <h:inputText value="#{instituicaoMb.instituicao.endereco}"  style="width: 445px"/>
+                        </h:panelGrid>
+                    </p:tab>
+                </p:tabView>
+                <h:panelGrid columns="5">
+                    <h:commandButton value="Inserir" 
+                                     action="#{instituicaoMb.inserir()}"
+
+                                     class="btn btn-primary" />
+                    <p:commandButton value="Salvar" 
+                                     action="#{instituicaoMb.salvar()}" 
+                                     class="btn btn-success"
+                                     process="@all"
+                                     update="@form"/>
+                    <h:commandButton value="Alterar" 
+                                     action="#{instituicaoMb.alterar()}"
+                                     class="btn btn-warning" />
+                    <h:commandButton value="Cancelar" 
+                                     action="#{instituicaoMb.cancelar()}"
+                                     class="btn btn-info" />
+                    <h:commandButton value="Excluir"
+                                     action="#{instituicaoMb.excluir()}"
+                                     class="btn btn-danger" />
+                </h:panelGrid>
+            </h:form>
+        </ui:define>
+    </ui:composition>    
+</html>
+

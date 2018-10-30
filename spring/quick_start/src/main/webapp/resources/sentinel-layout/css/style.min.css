@@ -1,0 +1,49 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+ *  Document   : style.min.css
+ *  Created on : 26/05/2015 - 09:36:33
+ *  Author     : Clayton
+ *  Co-Author  : Daniel
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    .ui-selectonemenu = container do componente
+    .ui-selectonemenu-label = fundo do componente
+*/
+
+.ui-panel { background: rgb(250,250,255); }
+
+.ui-panelgrid tbody tr td { border: none !important; }
+.ui-panelgrid .ui-grid-responsive .ui-grid-row { border: none !important; }
+
+.BlockSpace { display: block; width: 100%; height: 27px!important; }
+
+.SeparatorAluno { width: 100%; height: 3px; border-color: #27AAE1; } 
+
+.EmptyBox15{ width: 100%; height: 15px }
+
+.MarBot1{ margin-bottom: 1px;}
+
+#container-btnRibbonPesquisar { float: right; }
+#container-inputRibbonPesquisar { float: left; width: 75%;}
+
+#container-btnRibbonSalvar { width: 411px; margin-right: 10px!important; margin-top: 0px!important;}
+
+.btnRibbonSalvar { width: 100%!important; }
+
+.PanelgridCenter,
+.PanelgridLeft,
+.PanelgridRight { border:0px none; background:none }
+
+.selectonemenu-aluno { width: 40%!important }
+.selectoneradio-aluno { margin-bottom: 5px!important }
+
+.ui-selectonemenu-label { width: 100%!important; }
+
+.ui-panelgrid tbody tr td {
+    border: none !important;
+}
+.ui-panelgrid .ui-grid-responsive .ui-grid-row {
+    border: none !important;
+}
+.ui-ribbon-group-content {
+    width: 100% !important;
+    display: inline-block !important;
+}

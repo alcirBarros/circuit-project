@@ -1,0 +1,552 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/*html { text-rendering: optimizeLegibility !important; -webkit-font-smoothing: antialiased !important;}*/
+
+body{height:100%; width:100%;}
+
+/* CORE LAYOUT STANDART STYLES ********************************************************************************************************** */
+
+a, div, span, input, textarea, li, strong, button{ outline:none; text-decoration:none;}
+img{ border:none; border:0px;}
+
+/* for responsive mode - if you want any element has a responsive fluid abilities with media queries you must add this class to your element*/
+.Responsive{}
+
+/* Text Decoration */
+.Underline{ text-decoration:underline;}
+
+/* Making Unselectable Contents */
+.Unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/*.NoDisplay{display:none;}
+.OnDisplay{display:block;}*/
+
+/* Display */
+.DispBlock{ display:block;}
+.DispTable{ display:table; vertical-align:middle;}
+.DispTableCell{ display:table-cell; vertical-align:middle;}
+.DispNone{ display:none;}
+.DispInlBlock{display:inline-block;}
+
+.NoDisplay{display:none;}
+
+/* Position */
+.PosFixed{position:fixed;}
+.PosAbsolute{position:absolute;}
+.PosRelative{ position:relative;}
+.PosStatic{position:static;}
+
+/* Floating */
+.Fleft{ float:left;}
+.Fright{ float:right;}
+.Fnone{ float:none !important;}
+
+/* Overflows */
+.OvHidden{ overflow:hidden;}
+.OvScroll{ overflow:scroll;}
+.OvAuto{ overflow:auto;}
+.OvVisible{ overflow:visible;}
+.OvXScroll{ overflow-x:scroll;}
+.OvYScroll{ overflow-y:scroll;}
+.OvXHidden{ overflow-x:hidden;}
+.OvYHidden{ overflow-y:hidden;}
+
+/* Empty Boxes */
+.EmptyBox1{ display:block; width:100%; height:1px; overflow:hidden;}
+.EmptyBox2{ display:block; width:100%; height:2px; overflow:hidden;}
+.EmptyBox3{ display:block; width:100%; height:3px; overflow:hidden;}
+.EmptyBox5{ display:block; width:100%; height:5px; overflow:hidden;}
+.EmptyBox10{ display:block; width:100%; height:10px; overflow:hidden;}
+.EmptyBox13{ display:block; width:100%; height:13px; overflow:hidden;}
+.EmptyBox15{ display:block; width:100%; height:15px; overflow:hidden;}
+.EmptyBox20{ display:block; width:100%; height:20px; overflow:hidden;}
+.EmptyBox30{ display:block; width:100%; height:30px; overflow:hidden;}
+.EmptyBox40{ display:block; width:100%; height:40px; overflow:hidden;}
+.EmptyBox50{ display:block; width:100%; height:50px; overflow:hidden;}
+.EmptyBox60{ display:block; width:100%; height:60px; overflow:hidden;}
+.EmptyBox70{ display:block; width:100%; height:70px; overflow:hidden;}
+.EmptyBox80{ display:block; width:100%; height:80px; overflow:hidden;}
+.EmptyBox90{ display:block; width:100%; height:90px; overflow:hidden;}
+.EmptyBox95{ display:block; width:100%; height:95px; overflow:hidden;}
+.EmptyBox96{ display:block; width:100%; height:96px; overflow:hidden;}
+.EmptyBox97{ display:block; width:100%; height:97px; overflow:hidden;}
+.EmptyBox98{ display:block; width:100%; height:98px; overflow:hidden;}
+.EmptyBox99{ display:block; width:100%; height:99px; overflow:hidden;}
+.EmptyBox100{ display:block; width:100%; height:100px; overflow:hidden;}
+.EmptyBox110{ display:block; width:100%; height:100px; overflow:hidden;}
+.EmptyBox120{ display:block; width:100%; height:100px; overflow:hidden;}
+.EmptyBox130{ display:block; width:100%; height:100px; overflow:hidden;}
+.EmptyBox140{ display:block; width:100%; height:100px; overflow:hidden;}
+.EmptyBox150{ display: block; width: 100%; height:150px; overflow:hidden;}
+
+/* Empty Boxes Special */
+.EmptyBox15{ display: block; width: 100%; height: 15px; overflow:hidden;}
+.EmptyBox25{ display: block; width: 100%; height: 25px; overflow:hidden;}
+.EmptyBox35{ display: block; width: 100%; height: 35px; overflow:hidden;}
+.EmptyBox45{ display: block; width: 100%; height: 45px; overflow:hidden;}
+
+/* Opacity */
+.Opac100{ opacity:1; -webkit-opacity:1; -moz-opacity:1;}
+.Opac95{ opacity:0.95; -webkit-opacity:0.95; -moz-opacity:0.95;}
+.Opac90{ opacity:0.9; -webkit-opacity:0.9; -moz-opacity:0.9;}
+.Opac80{ opacity:0.8; -webkit-opacity:0.8; -moz-opacity:0.8;}
+.Opac70{ opacity:0.7; -webkit-opacity:0.7; -moz-opacity:0.7;}
+.Opac60{ opacity:0.6; -webkit-opacity:0.6; -moz-opacity:0.6;}
+.Opac50{ opacity:0.5; -webkit-opacity:0.5; -moz-opacity:0.5;}
+.Opac40{ opacity:0.4; -webkit-opacity:0.4; -moz-opacity:0.4;}
+.Opac30{ opacity:0.3; -webkit-opacity:0.3; -moz-opacity:0.3;}
+.Opac20{ opacity:0.2; -webkit-opacity:0.2; -moz-opacity:0.2;}
+.Opac10{ opacity:0.1; -webkit-opacity:0.1; -moz-opacity:0.1;}
+.OpacZero{ opacity:0; -webkit-opacity:0; -moz-opacity:0;}
+
+/* Border Radius */
+.BordRad3{ border-radius:3px; -webkit-border-radius:3px; -moz-border-radius:3px;}
+.BordRad4{ border-radius:4px; -webkit-border-radius:4px; -moz-border-radius:4px;}
+.BordRad5{ border-radius:5px; -webkit-border-radius:5px; -moz-border-radius:5px;}
+.BordRad10{ border-radius:10px; -webkit-border-radius:10px; -moz-border-radius:10px;}
+.BordRad15{ border-radius:15px; -webkit-border-radius:15px; -moz-border-radius:15px;}
+.BordRadHalf{ border-radius:50%; -webkit-border-radius:50%; -moz-border-radius:50%;}
+
+.BordRight{ border-right:solid 1px transparent; box-sizing:border-box; -webkit-box-sizing:border-box; -moz-box-sizing:border-box;}
+.BordLeft{ border-left:solid 1px transparent; box-sizing:border-box; -webkit-box-sizing:border-box; -moz-box-sizing:border-box;}
+.BordTop{ border-top:solid 1px transparent; box-sizing:border-box; -webkit-box-sizing:border-box; -moz-box-sizing:border-box;}
+.BordBottom{ border-top:solid 1px transparent; box-sizing:border-box; -webkit-box-sizing:border-box; -moz-box-sizing:border-box;}
+.BordAll{ border:solid 1px transparent; box-sizing:border-box; -webkit-box-sizing:border-box; -moz-box-sizing:border-box;}
+
+/* Width */
+.Wid100{ width:100%;}
+.Wid90{ width:90%;}
+.Wid80{ width:80%;}
+.Wid70{ width:70%;}
+.Wid60{ width:60%;}
+.Wid50{ width:50%;}
+.Wid45{ width:45%;}
+.Wid40{ width:40%;}
+.Wid30{ width:30%;}
+
+/* Width Special Values */
+.Wid95{ width:95%;}
+.Wid33{ width:33.3%;}
+.Wid25{ width:25%;}
+.Wid20{ width:20%;}
+.Wid25{ width:25%;}
+.Wid15{ width:15%;}
+.Wid12{ width:12%;}
+.Wid10{ width:10%;}
+
+
+.MaxWid500{max-width:500px;}
+
+/* Height */
+.Hei100{ height:100%;}
+.Hei90{ height:90%;}
+.Hei80{ height:80%;}
+.Hei70{ height:70%;}
+.Hei60{ height:60%;}
+.Hei40{ height:40%;}
+.Hei50{ height:50%;}
+.Hei30{ height:30%;}
+.Hei20{ height:20%;}
+.Hei10{ height:10%;}
+
+/* Margins */
+.MarTopPerc5{ margin-top:5%;}
+.MarTopPerc10{ margin-top:10%;}
+.MarTopPerc20{ margin-top:20%;}
+.MarTopPerc30{ margin-top:30%;}
+.MarTopPerc40{ margin-top:40%;}
+.MarTopPerc50{ margin-top:50%;}
+
+.MarAuto{ margin-left:auto; margin-right:auto;}
+
+.MarTop5{ margin-top:5px;}
+.MarTop10{ margin-top:10px;}
+.MarTop20{ margin-top:20px;}
+.MarTop30{ margin-top:30px;}
+.MarTop40{ margin-top:40px;}
+.MarTop50{ margin-top:50px;}
+
+.MarTopQuarter{ margin-top:25%;}
+.MarTopHalf{ margin-top:50%;}
+
+.MarBot10{ margin-bottom:10px;}
+.MarRight10{ margin-right:10px;}
+.MarRight20{ margin-right:20px;}
+
+
+/* Paddings */
+.PaddingTopPercent5{ padding-top: 5%;}
+.PaddingTopPercent7{ padding-top: 7%;}
+.PaddingTopPercent8{ padding-top: 8%;}
+.PaddingTopPercent10{ padding-top: 10%;}
+
+
+/* Containers */
+.Container100{ width:100%; overflow:hidden; float:left;}
+.Container96{ width:96%; overflow:hidden; float:left;}
+.Container90{ width:90%; overflow:hidden; float:left;}
+.Container85{ width:85%; overflow:hidden; float:left;}
+.Container80{ width:80%; overflow:hidden; float:left;}
+.Container75{ width:75%; overflow:hidden; float:left;}
+.Container70{ width:70%; overflow:hidden; float:left;}
+.Container60{ width:60%; overflow:hidden; float:left;}
+.Container50{ width:50%; overflow:hidden; float:left;}
+.Container40{ width:40%; overflow:hidden; float:left;}
+.Container33{ width:33.3%; overflow:hidden; float:left;}
+.Container30{ width:30%; overflow:hidden; float:left;}
+.Container25{ width:25%; overflow:hidden; float:left;}
+.Container20{ width:20%; overflow:hidden; float:left;}
+.Container15{ width:15%; overflow:hidden; float:left;}
+.Container10{ width:10%; overflow:hidden; float:left;}
+.Container5{ width:5%; overflow:hidden; float:left;}
+
+.ContainerIndent{width:auto; overflow:hidden; display:block;}
+
+/* Text Aligns */
+.TexAlCenter{ text-align:center;}
+.TexAlLeft{ text-align:left;}
+.TexAlRight{ text-align:right !important;}
+
+/* Padding With Transparent Border*/
+.PadWithBorder1{ border:solid 1px transparent;}
+.PadWithBorder2{ border:solid 2px transparent;}
+.PadWithBorder3{ border:solid 3px transparent;}
+.PadWithBorder4{ border:solid 4px transparent;}
+.PadWithBorder5{ border:solid 5px transparent;}
+.PadWithBorder10{ border:solid 10px transparent;}
+
+/* Box Sizing */
+.BoxSizeContent{ box-sizing:content-box; -webkit-box-sizing:content-box; -moz-box-sizing:content-box;}
+.BoxSizeBorder{ box-sizing:border-box; -webkit-box-sizing:border-box; -moz-box-sizing:border-box;}
+
+/* Font Sizes */
+.Fs9{font-size:9px !important;} 
+.Fs10{font-size:10px !important;} 
+.Fs11{font-size:11px !important;} 
+.Fs12{font-size:12px !important;} 
+.Fs13{font-size:13px !important;} 
+.Fs14{font-size:14px !important;} 
+.Fs15{font-size:15px !important;} 
+.Fs16{font-size:16px !important;} 
+.Fs17{font-size:17px !important;} 
+.Fs18{font-size:18px !important;} 
+.Fs19{font-size:19px !important;} 
+.Fs20{font-size:20px !important;} 
+.Fs21{font-size:21px !important;} 
+.Fs22{font-size:22px !important;} 
+.Fs23{font-size:23px !important;} 
+.Fs24{font-size:24px !important;} 
+.Fs25{font-size:25px !important;} 
+.Fs26{font-size:26px !important;} 
+.Fs27{font-size:27px !important;} 
+.Fs28{font-size:28px !important;} 
+.Fs29{font-size:29px !important;} 
+.Fs30{font-size:30px !important;}
+.Fs40{font-size:40px !important;}
+.Fs50{font-size:50px !important;}
+.Fs60{font-size:60px !important;}
+.Fs100{font-size:100px !important;}
+.Fs130{font-size:130px !important;}
+
+/* Font Type */
+.FontBold{ font-weight:bold;}
+.FontLight{ font-weight:lighter;}
+.FontNormal{ font-weight:normal;}
+
+/* Animated */
+.Animated05{-webkit-transition: all 0.5s ease; -moz-transition: all 0.5s ease; -ms-transition: all 0.5s ease; -o-transition: all 0.5s ease; transition: all 0.5s ease;}
+.Animated1{-webkit-transition: all 1s ease; -moz-transition: all 1s ease; -ms-transition: all 1s ease; -o-transition: all 1s ease; transition: all 1s ease;}
+
+
+.changecolor:hover{background-color:yellowgreen; padding: 20px;}
+
+.notransition {
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -o-transition: none !important;
+    -ms-transition: none !important;
+    transition: none !important;
+}
+/******************************************************************************************************************************** */
+
+/* MEDIA QUERIES **************************************************************************************************************** */
+
+/* Large desktop */
+@media (min-width: 960px){
+    .ContainerIndent{margin:8px 10px;}
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 640px) and (max-width: 960px) {	
+    .span3 {width: 45%;}
+    .ContainerIndent{margin:6px 8px;}
+    .Responsive{width:50%}
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 640px) {									  
+    .ContainerIndent{margin:6px 8px;}
+    .Responsive{width:100%}	
+    .DisplayOnResponsive{display:block; float:right;}
+}
+
+/* Portrait phones and down */
+@media (min-width:320px) and (max-width: 480px) {
+    .span3 {width: 90%;}	
+    .ContainerIndent{margin:16px 8px 0px 8px;}
+    .Responsive{width:100%}
+}
+
+/* Landscape phones */
+@media (min-height:200px) and (max-height:500px) and (max-width:960px){
+
+}
+.corFonteMsg {
+    background-color: #cccccc!important;  
+} 
+.DataTable table * {
+    border: none !important;
+}
+
+#balaoacima {
+    padding: 9px;
+    width: 180px;
+    border-radius: 10px;
+    background-color: #ADD8E6;
+    font-size:  0.7em;
+    text-align: left;
+    vertical-align: middle !important;
+    word-break: break-all !important;
+    float: left !important;
+}
+#balaoacima:before {
+    content:"";
+    float: left !important;
+    width: 0;
+    height: 0;
+    text-align: center;
+    border-bottom: 12px solid #ADD8E6;
+    border-right:  10px solid transparent;
+    border-left:  10px solid transparent;
+    margin: -14px 0 0 -3px !important;
+    -webkit-transform: rotate(20deg) scale(1.50, -1);
+    -moz-transform:  rotate(20deg) scale(1.50, -1);
+    -ms-transform:  rotate(20deg) scale(1.50, -1);
+    transform:  rotate(20deg) scale(1.50, -1); 
+}
+
+
+#balaoacima2 {
+    padding: 9px;
+    width: 180px;
+    float: right;
+    border-radius: 10px;
+    background-color: #e5f6f9;
+    font-size:  0.7em;
+    text-align: left;
+    vertical-align: middle !important;
+    word-break: break-all !important;
+    background: #e5f6f9;
+}
+
+#balaoacima2:before {
+    content:"";
+    float: right !important;
+    width: 0;
+    height: 0;
+    text-align: center;
+    border-bottom: 10px solid #e5f6f9;
+    border-right:  10px solid transparent;
+    border-left:  20px solid transparent;
+    margin: -12px 0 0 -22px !important;
+    -webkit-transform: rotate(-20deg) scale(1.50, -1);
+    -moz-transform:  rotate(-20deg) scale(1.50, -1);
+    -ms-transform:  rotate(-20deg) scale(1.50, -1);
+    transform:  rotate(-20deg) scale(1.50, -1);  
+}
+
+#balaoacimai2 {
+    padding: 5px;
+    width: 180px;
+    float: right;
+    border-radius: 10px;
+    font-size:  0.8em;
+    text-align: left;
+    vertical-align: middle !important;
+    word-break: break-all !important;
+}
+
+#balaoacimai {
+    padding: 5px;
+    width: 180px;
+    float: right;
+    border-radius: 10px;
+    font-size:  0.8em;
+    text-align: left;
+    vertical-align: middle !important;
+    word-break: break-all !important;}
+
+.minhaAgenda {
+    background-color: #61a243 !important;
+    border: none !important;
+}
+
+.meusEventos {
+    /* favor não mexer, pois alguém usa rsrs, mesma coisa o de cima kkkkk*/
+    background-color: #2f90ca !important;
+    border: none !important;
+}
+.ui-panelgrid tbody tr td {
+    border: none !important;
+}
+
+/*=================== Cores para o Calendario Evento e dias não letivos ============================*/
+.evento696969 {background-color: #696969 !important; border: none !important;color:#000000 !important}
+.evento808080 {background-color: #808080 !important; border: none !important;color:#000000 !important}
+.eventoA9A9A9 {background-color: #A9A9A9 !important; border: none !important;color:#000000 !important}
+.eventoC0C0C0 {background-color: #C0C0C0 !important; border: none !important;color:#000000 !important}
+.eventoD3D3D3 {background-color: #D3D3D3 !important; border: none !important;color:#000000 !important}
+.eventoDCDCDC {background-color: #DCDCDC !important; border: none !important;color:#000000 !important}
+.eventoFFFFFF {background-color: #FFFFFF !important; border: none !important;color:#000000 !important}
+.evento6A5ACD {background-color: #6A5ACD !important; border: none !important;color:#000000 !important}
+.evento483D8B {background-color: #483D8B !important; border: none !important;color:#000000 !important}
+.evento191970 {background-color: #191970 !important; border: none !important;color:#000000 !important}
+.evento000080 {background-color: #000080 !important; border: none !important;color:#000000 !important}
+.evento00008B {background-color: #00008B !important; border: none !important;color:#000000 !important}
+.evento0000CD {background-color: #0000CD !important; border: none !important;color:#000000 !important}
+.evento0000FF {background-color: #0000FF !important; border: none !important;color:#000000 !important}
+.evento6495ED {background-color: #6495ED !important; border: none !important;color:#000000 !important}
+.evento4169E1 {background-color: #4169E1 !important; border: none !important;color:#000000 !important}
+.evento1E90FF {background-color: #1E90FF !important; border: none !important;color:#000000 !important}
+.evento00BFFF {background-color: #00BFFF !important; border: none !important;color:#000000 !important}
+.evento87CEFA {background-color: #87CEFA !important; border: none !important;color:#000000 !important}
+.evento87CEEB {background-color: #87CEEB !important; border: none !important;color:#000000 !important}
+.eventoADD8E6 {background-color: #ADD8E6 !important; border: none !important;color:#000000 !important}
+.evento4682B4 {background-color: #4682B4 !important; border: none !important;color:#000000 !important}
+.eventoB0C4DE {background-color: #B0C4DE !important; border: none !important;color:#000000 !important}
+.evento708090 {background-color: #708090 !important; border: none !important;color:#000000 !important}
+.evento778899 {background-color: #778899 !important; border: none !important;color:#000000 !important}
+.evento00FFFF {background-color: #00FFFF !important; border: none !important;color:#000000 !important}
+.evento00CED1 {background-color: #00CED1 !important; border: none !important;color:#000000 !important}
+.evento40E0D0 {background-color: #40E0D0 !important; border: none !important;color:#000000 !important}
+.evento48D1CC {background-color: #48D1CC !important; border: none !important;color:#000000 !important}
+.evento20B2AA {background-color: #20B2AA !important; border: none !important;color:#000000 !important}
+.evento008B8B {background-color: #008B8B !important; border: none !important;color:#000000 !important}
+.evento008B8B {background-color: #008B8B !important; border: none !important;color:#000000 !important}
+.evento7FFFD4 {background-color: #7FFFD4 !important; border: none !important;color:#000000 !important}
+.evento66CDAA {background-color: #66CDAA !important; border: none !important;color:#000000 !important}
+.evento5F9EA0 {background-color: #5F9EA0 !important; border: none !important;color:#000000 !important}
+.evento2F4F4F {background-color: #2F4F4F !important; border: none !important;color:#000000 !important}
+.evento00FA9A {background-color: #00FA9A !important; border: none !important;color:#000000 !important}
+.evento00FF7F {background-color: #00FF7F !important; border: none !important;color:#000000 !important}
+.evento98FB98 {background-color: #98FB98 !important; border: none !important;color:#000000 !important}
+.evento90EE90 {background-color: #90EE90 !important; border: none !important;color:#000000 !important}
+.evento8FBC8F {background-color: #8FBC8F !important; border: none !important;color:#000000 !important}
+.evento3CB371 {background-color: #3CB371 !important; border: none !important;color:#000000 !important}
+.evento2E8B57 {background-color: #2E8B57 !important; border: none !important;color:#000000 !important}
+.evento006400 {background-color: #006400 !important; border: none !important;color:#000000 !important}
+.evento008000 {background-color: #008000 !important; border: none !important;color:#000000 !important}
+.evento228B22 {background-color: #228B22 !important; border: none !important;color:#000000 !important}
+.evento32CD32 {background-color: #32CD32 !important; border: none !important;color:#000000 !important}
+.evento00FF00 {background-color: #00FF00 !important; border: none !important;color:#000000 !important}
+.evento7CFC00 {background-color: #7CFC00 !important; border: none !important;color:#000000 !important}
+.evento7FFF00 {background-color: #7FFF00 !important; border: none !important;color:#000000 !important}
+.eventoADFF2F {background-color: #ADFF2F !important; border: none !important;color:#000000 !important}
+.evento9ACD32 {background-color: #9ACD32 !important; border: none !important;color:#000000 !important}
+.evento6B8E23 {background-color: #6B8E23 !important; border: none !important;color:#000000 !important}
+.evento556B2F {background-color: #556B2F !important; border: none !important;color:#000000 !important}
+.evento808000 {background-color: #808000 !important; border: none !important;color:#000000 !important}
+.eventoBDB76B {background-color: #BDB76B !important; border: none !important;color:#000000 !important}
+.eventoDAA520 {background-color: #DAA520 !important; border: none !important;color:#000000 !important}
+.eventoB8860B {background-color: #B8860B !important; border: none !important;color:#000000 !important}
+.evento8B4513 {background-color: #8B4513 !important; border: none !important;color:#000000 !important}
+.eventoA0522D {background-color: #A0522D !important; border: none !important;color:#000000 !important}
+.eventoBC8F8F {background-color: #BC8F8F !important; border: none !important;color:#000000 !important}
+.eventoCD853F {background-color: #CD853F !important; border: none !important;color:#000000 !important}
+.eventoD2691E {background-color: #D2691E !important; border: none !important;color:#000000 !important}
+.eventoF4A460 {background-color: #F4A460 !important; border: none !important;color:#000000 !important}
+.eventoFFDEAD {background-color: #FFDEAD !important; border: none !important;color:#000000 !important}
+.eventoF5DEB3 {background-color: #F5DEB3 !important; border: none !important;color:#000000 !important}
+.eventoDEB887 {background-color: #DEB887 !important; border: none !important;color:#000000 !important}
+.eventoD2B48C {background-color: #D2B48C !important; border: none !important;color:#000000 !important}
+.evento7B68EE {background-color: #7B68EE !important; border: none !important;color:#000000 !important}
+.evento9370DB {background-color: #9370DB !important; border: none !important;color:#000000 !important}
+.evento8A2BE2 {background-color: #8A2BE2 !important; border: none !important;color:#000000 !important}
+.evento4B0082 {background-color: #4B0082 !important; border: none !important;color:#000000 !important}
+.evento9400D3 {background-color: #9400D3 !important; border: none !important;color:#000000 !important}
+.evento9932CC {background-color: #9932CC !important; border: none !important;color:#000000 !important}
+.eventoBA55D3 {background-color: #BA55D3 !important; border: none !important;color:#000000 !important}
+.evento800080 {background-color: #800080 !important; border: none !important;color:#000000 !important}
+.evento8B008B {background-color: #8B008B !important; border: none !important;color:#000000 !important}
+.eventoFF00FF {background-color: #FF00FF !important; border: none !important;color:#000000 !important}
+.eventoEE82EE {background-color: #EE82EE !important; border: none !important;color:#000000 !important}
+.eventoDA70D6 {background-color: #DA70D6 !important; border: none !important;color:#000000 !important}
+.eventoDDA0DD {background-color: #DDA0DD !important; border: none !important;color:#000000 !important}
+.eventoC71585 {background-color: #C71585 !important; border: none !important;color:#000000 !important}
+.eventoFF1493 {background-color: #FF1493 !important; border: none !important;color:#000000 !important}
+.eventoFF69B4 {background-color: #FF69B4 !important; border: none !important;color:#000000 !important}
+.eventoC71585 {background-color: #C71585 !important; border: none !important;color:#000000 !important}
+.eventoFFB6C1 {background-color: #FFB6C1 !important; border: none !important;color:#000000 !important}
+.eventoFFC0CB {background-color: #FFC0CB !important; border: none !important;color:#000000 !important}
+.eventoF08080 {background-color: #F08080 !important; border: none !important;color:#000000 !important}
+.eventoCD5C5C {background-color: #CD5C5C !important; border: none !important;color:#000000 !important}
+.eventoDC143C {background-color: #DC143C !important; border: none !important;color:#000000 !important}
+.evento800000 {background-color: #800000 !important; border: none !important;color:#000000 !important}
+.evento8B0000 {background-color: #8B0000 !important; border: none !important;color:#000000 !important}
+.eventoB22222 {background-color: #B22222 !important; border: none !important;color:#000000 !important}
+.eventoA52A2A {background-color: #A52A2A !important; border: none !important;color:#000000 !important}
+.eventoFA8072 {background-color: #FA8072 !important; border: none !important;color:#000000 !important}
+.eventoE9967A {background-color: #E9967A !important; border: none !important;color:#000000 !important}
+.eventoFFA07A {background-color: #FFA07A !important; border: none !important;color:#000000 !important}
+.eventoFF7F50 {background-color: #FF7F50 !important; border: none !important;color:#000000 !important}
+.eventoFF6347 {background-color: #FF6347 !important; border: none !important;color:#000000 !important}
+.eventoFF0000 {background-color: #FF0000 !important; border: none !important;color:#000000 !important}
+.eventoFF4500 {background-color: #FF4500 !important; border: none !important;color:#000000 !important}
+.eventoFF8C00 {background-color: #FF8C00 !important; border: none !important;color:#000000 !important}
+.eventoFFA500 {background-color: #FFA500 !important; border: none !important;color:#000000 !important}
+.eventoFFD700 {background-color: #FFD700 !important; border: none !important;color:#000000 !important}
+.eventoFFFF00 {background-color: #FFFF00 !important; border: none !important;color:#000000 !important}
+.eventoF0E68C {background-color: #F0E68C !important; border: none !important;color:#000000 !important}
+.eventoF0F8FF {background-color: #F0F8FF !important; border: none !important;color:#000000 !important}
+.eventoF8F8FF {background-color: #F8F8FF !important; border: none !important;color:#000000 !important}
+.eventoFFFAFA {background-color: #FFFAFA !important; border: none !important;color:#000000 !important}
+.eventoFFF5EE {background-color: #FFF5EE !important; border: none !important;color:#000000 !important}
+.eventoFFFAF0 {background-color: #FFFAF0 !important; border: none !important;color:#000000 !important}
+.eventoF5F5F5 {background-color: #F5F5F5 !important; border: none !important;color:#000000 !important}
+.eventoF5F5DC {background-color: #F5F5DC !important; border: none !important;color:#000000 !important}
+.eventoFDF5E6 {background-color: #FDF5E6 !important; border: none !important;color:#000000 !important}
+.eventoFFFFF0 {background-color: #FFFFF0 !important; border: none !important;color:#000000 !important}
+.eventoFAF0E6 {background-color: #FAF0E6 !important; border: none !important;color:#000000 !important}
+.eventoFFF8DC {background-color: #FFF8DC !important; border: none !important;color:#000000 !important}
+.eventoFAEBD7 {background-color: #FAEBD7 !important; border: none !important;color:#000000 !important}
+.eventoFFEBCD {background-color: #FFEBCD !important; border: none !important;color:#000000 !important}
+.eventoFFE4C4 {background-color: #FFE4C4 !important; border: none !important;color:#000000 !important}
+.eventoFFFFE0 {background-color: #FFFFE0 !important; border: none !important;color:#000000 !important}
+.eventoFFFACD {background-color: #FFFACD !important; border: none !important;color:#000000 !important}
+.eventoFAFAD2 {background-color: #FAFAD2 !important; border: none !important;color:#000000 !important}
+.eventoFFEFD5 {background-color: #FFEFD5 !important; border: none !important;color:#000000 !important}
+.eventoFFDAB9 {background-color: #FFDAB9 !important; border: none !important;color:#000000 !important}
+.eventoFFE4B5 {background-color: #FFE4B5 !important; border: none !important;color:#000000 !important}
+.eventoEEE8AA {background-color: #EEE8AA !important; border: none !important;color:#000000 !important}
+.eventoFFE4E1 {background-color: #FFE4E1 !important; border: none !important;color:#000000 !important}
+.eventoFFF0F5 {background-color: #FFF0F5 !important; border: none !important;color:#000000 !important}
+.eventoE6E6FA {background-color: #E6E6FA !important; border: none !important;color:#000000 !important}
+.eventoD8BFD8 {background-color: #D8BFD8 !important; border: none !important;color:#000000 !important}
+.eventoF0FFFF {background-color: #F0FFFF !important; border: none !important;color:#000000 !important}
+.eventoE0FFFF {background-color: #E0FFFF !important; border: none !important;color:#000000 !important}
+.eventoB0E0E6 {background-color: #B0E0E6 !important; border: none !important;color:#000000 !important}
+.eventoE0FFFF {background-color: #E0FFFF !important; border: none !important;color:#000000 !important}
+.eventoF0FFF0 {background-color: #F0FFF0 !important; border: none !important;color:#000000 !important}
+.eventoF5FFFA {background-color: #F5FFFA !important; border: none !important;color:#000000 !important}
+/*===================================== Fim de Cores ================================================*/
+.tamanhoTab {
+    height: -webkit-fill-available;
+}
