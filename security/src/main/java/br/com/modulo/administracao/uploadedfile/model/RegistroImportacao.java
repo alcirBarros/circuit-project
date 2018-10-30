@@ -1,5 +1,6 @@
 package br.com.modulo.administracao.uploadedfile.model;
 
+import br.com.configuracao.scoped.AbstractEntidade;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
@@ -14,7 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "rip_registro_importacao")
-public class RegistroImportacao implements Serializable {
+public class RegistroImportacao extends AbstractEntidade implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,6 +35,10 @@ public class RegistroImportacao implements Serializable {
     @Column(name = "rip_cpf_responsavel")
     private String cpfResponsavel;
 
+    @Column(name = "rip_inconsistencia_enum", length = 45)
+    private InconsistenciaEnum inconsistenciaEnum = InconsistenciaEnum.SEM_INCONSISTENCIA;
+
+    @Override
     public Integer getId() {
         return id;
     }
@@ -72,6 +77,14 @@ public class RegistroImportacao implements Serializable {
 
     public void setCpfResponsavel(String cpfResponsavel) {
         this.cpfResponsavel = cpfResponsavel;
+    }
+
+    public InconsistenciaEnum getInconsistenciaEnum() {
+        return inconsistenciaEnum;
+    }
+
+    public void setInconsistenciaEnum(InconsistenciaEnum inconsistenciaEnum) {
+        this.inconsistenciaEnum = inconsistenciaEnum;
     }
 
     public static boolean isNULL(RegistroImportacao registroImportacao) {

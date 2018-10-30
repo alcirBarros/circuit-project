@@ -1,6 +1,6 @@
 package br.com.modulo.webservice.service;
 
-import br.com.modulo.webservice.model.Aluno;
+import br.com.modulo.webservice.model.AlunoWs;
 import java.util.ArrayList;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ProfessorWebService {
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<Iterable<Aluno>> findAllTasks() {
-        Iterable<Aluno> tasks = new ArrayList<>();
+    public ResponseEntity<Iterable<AlunoWs>> findAllTasks() {
+        Iterable<AlunoWs> tasks = new ArrayList<>();
         return ResponseEntity.ok().body(tasks);
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = "application/json")
-    public ResponseEntity<Iterable<Aluno>> addTasks(@RequestBody Iterable<Aluno> newTasks) {
-        Iterable<Aluno> tasks = new ArrayList<>();
+    public ResponseEntity<Iterable<AlunoWs>> addTasks(@RequestBody Iterable<AlunoWs> newTasks) {
+        Iterable<AlunoWs> tasks = new ArrayList<>();
         return ResponseEntity.ok().body(tasks);
     }
 

@@ -1,5 +1,6 @@
 package br.com.modulo.administracao.uploadedfile.model;
 
+import br.com.configuracao.scoped.AbstractEntidade;
 import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "rgt_registro")
-public class Registro implements Serializable {
+public class Registro extends AbstractEntidade implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +30,7 @@ public class Registro implements Serializable {
     @OneToMany(mappedBy = "registro", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<RegistroImportacao> registroImportacaoList = new ArrayList<>();
 
+    @Override
     public Integer getId() {
         return id;
     }

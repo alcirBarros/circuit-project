@@ -1,7 +1,7 @@
 package br.com.modulo.webservice.aluno;
 
-import br.com.modulo.webservice.model.Aluno;
-import br.com.modulo.webservice.service.AlunoService;
+import br.com.modulo.webservice.model.AlunoWs;
+import br.com.modulo.administracao.aluno.service.AlunoService;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -55,7 +55,7 @@ public class AlunoWebService {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public Response getObject() {
-        Aluno aluno = new Aluno();
+        AlunoWs aluno = new AlunoWs();
         return Response.ok().type(MediaType.APPLICATION_JSON).entity(aluno).build();
     }
 
@@ -64,7 +64,7 @@ public class AlunoWebService {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response getObject(@PathParam("codigo") Integer codigo) {
-        Aluno aluno = new Aluno();
+        AlunoWs aluno = new AlunoWs();
         return Response.ok().type(MediaType.APPLICATION_JSON).entity(aluno).build();
     }
 
@@ -72,7 +72,7 @@ public class AlunoWebService {
     @Path("/inserir")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response inserir(Aluno aluno) {
+    public Response inserir(AlunoWs aluno) {
         return Response.ok().type(MediaType.APPLICATION_JSON).entity(aluno).build();
     }
 
@@ -80,7 +80,7 @@ public class AlunoWebService {
     @Path("/excluir")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response excluir(Aluno aluno) {
+    public Response excluir(AlunoWs aluno) {
         return Response.ok().type(MediaType.APPLICATION_JSON).entity(aluno).build();
     }
 }

@@ -6,14 +6,14 @@ import java.util.Random;
 public abstract class AbstractEntidade implements Entidade, Serializable {
 
     private static final long serialVersionUID = 4963221767794543431L;
-    private int random = new Random().nextInt(Integer.MAX_VALUE);
+    private int randomId = new Random().nextInt(Integer.MAX_VALUE);
 
     public int getRandomId() {
-        return random;
+        return randomId;
     }
 
-    public void setRandom(int random) {
-        this.random = random;
+    public void setRandomId(int randomId) {
+        this.randomId = randomId;
     }
     
     @Override

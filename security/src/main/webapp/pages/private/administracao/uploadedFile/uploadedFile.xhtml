@@ -53,9 +53,9 @@
                             <p:dataTable id="dataTableRegistroImportacao"
                                          value="#{uploadedFileMb.registro.registroImportacaoList}"
                                          var="registroImportacao" 
+                                         rowKey="#{registroImportacao.randomId}"
                                          emptyMessage="Registro não encontrado.">
 
-    
                                 <p:column headerText="Nome Aluno">
                                     <h:outputText value="#{registroImportacao.nomeAluno}" />
                                 </p:column>
@@ -66,8 +66,22 @@
                                     <h:outputText value="#{registroImportacao.cpfResponsavel}" />
                                 </p:column>
                                 <p:column headerText="Inconsistência" style="text-align: center; width: 200px">
-                                    <h:outputText />
+                                    <h:outputText value="#{registroImportacao.inconsistenciaEnum.value}"/>
                                 </p:column>
+
+                                <p:columnGroup type="footer">
+                                    <p:row>
+                                        <p:column colspan="4" style="text-align: left">
+                                            <f:facet name="footer">
+                                                <h:outputText value="Total de Registros:  " />
+                                                <h:outputText value="#{uploadedFileMb.registro.registroImportacaoList.size()}">
+                                                    <f:convertNumber/>
+                                                </h:outputText>
+                                            </f:facet>
+                                        </p:column>
+                                    </p:row>
+                                </p:columnGroup>
+
                             </p:dataTable>
                         </h:panelGrid>
                         <p:commandButton value="Baixar Excel" ajax="false">

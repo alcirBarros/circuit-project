@@ -1,10 +1,10 @@
 package br.com.modulo.webservice.model;
 
-//import com.google.gson.Gson;
+
 import java.io.Serializable;
 import java.util.Date;
 
-public class Aluno implements Serializable {
+public class AlunoWs implements Serializable {
 
     private static final long serialVersionUID = 5918496610496327193L;
 

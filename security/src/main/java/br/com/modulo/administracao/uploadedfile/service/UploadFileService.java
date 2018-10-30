@@ -1,6 +1,10 @@
 package br.com.modulo.administracao.uploadedfile.service;
 
+import br.com.configuracao.util.CPFValidator;
+import br.com.modulo.administracao.aluno.model.Aluno;
+import br.com.modulo.administracao.uploadedfile.model.InconsistenciaEnum;
 import br.com.modulo.administracao.uploadedfile.model.RegistroImportacao;
+import br.com.modulo.administracao.aluno.service.AlunoService;
 import com.exception.BusinessException;
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,10 +15,14 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UploadFileService {
+
+    @Autowired
+    private AlunoService alunoService;
 
     public List<RegistroImportacao> processar(File file) {
         try {
@@ -30,6 +38,7 @@ public class UploadFileService {
                 Iterator<Cell> cellIterator = linha.cellIterator();
                 RegistroImportacao registroImportacao = converterTo(cellIterator);
                 if (validaRegistro(registroImportacao)) {
+                    registroImportacao = inconsistencia(registroImportacao);
                     registroList.add(registroImportacao);
                 }
             }
@@ -37,6 +46,21 @@ public class UploadFileService {
         } catch (Exception e) {
             throw new BusinessException("Arquivo de importação não selecionado.");
         }
+    }
+
+    private RegistroImportacao inconsistencia(RegistroImportacao registroImportacao) {
+        String nomeAluno = registroImportacao.getNomeAluno();
+        String cpfResponsavel = registroImportacao.getCpfResponsavel();
+        
+        if (CPFValidator.validatorCPF(cpfResponsavel)) {
+            registroImportacao.setInconsistenciaEnum(InconsistenciaEnum.CPF);
+        }
+
+        Aluno aluno = alunoService.carregar(registroImportacao);
+        if (aluno == null || nomeAluno.trim().equals("")) {
+            registroImportacao.setInconsistenciaEnum(InconsistenciaEnum.ALUNO_NAO_CADASTRADO);
+        }
+        return registroImportacao;
     }
 
     private boolean validaRegistro(RegistroImportacao registroImportacao) {
