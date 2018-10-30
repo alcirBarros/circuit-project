@@ -2,13 +2,13 @@ package br.com.modulo.administracao.aluno.model;
 
 import java.io.Serializable;
 import java.util.Objects;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -21,11 +21,11 @@ public class ResponsavelAluno implements Serializable {
     @Column(name = "tbresponsaveis_tbcadastro_alunos_id", nullable = false)
     private Integer id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "tbresponsaveis_id", referencedColumnName = "tbresponsaveis_id")
     private Responsavel responsavel;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "tbcadastro_alunos_id", referencedColumnName = "tbcadastro_alunos_id")
     private Aluno aluno;
 

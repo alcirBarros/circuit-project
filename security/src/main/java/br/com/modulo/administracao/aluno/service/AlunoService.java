@@ -12,7 +12,15 @@ public class AlunoService {
     @Autowired
     private AlunoDAO alunoDAO;
 
+    public Aluno salvar(Aluno aluno) {
+        return alunoDAO.salvar(aluno);
+    }
+
     public Aluno carregar(RegistroImportacao registroImportacao) {
         return alunoDAO.carregar(registroImportacao);
+    }
+
+    public Aluno localizar(String nomeAluno) {
+        return alunoDAO.localizar(nomeAluno);
     }
 }

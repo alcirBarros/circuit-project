@@ -2,9 +2,12 @@ package br.com.modulo.administracao.uploadedfile.service;
 
 import br.com.configuracao.util.CPFValidator;
 import br.com.modulo.administracao.aluno.model.Aluno;
+import br.com.modulo.administracao.aluno.model.Responsavel;
 import br.com.modulo.administracao.uploadedfile.model.InconsistenciaEnum;
 import br.com.modulo.administracao.uploadedfile.model.RegistroImportacao;
 import br.com.modulo.administracao.aluno.service.AlunoService;
+import br.com.modulo.administracao.responsavel.service.ResponsavelService;
+import br.com.modulo.administracao.uploadedfile.model.Registro;
 import com.exception.BusinessException;
 import java.io.File;
 import java.io.FileInputStream;
@@ -23,8 +26,26 @@ public class UploadFileService {
 
     @Autowired
     private AlunoService alunoService;
+    @Autowired
+    private ResponsavelService responsavelService;
 
-    public List<RegistroImportacao> processar(File file) {
+    public void processar(Registro registro) {
+        List<RegistroImportacao> registroImportacaoList = registro.getRegistroImportacaoList();
+
+        for (RegistroImportacao registroImportacao : registroImportacaoList) {
+            try {
+                Responsavel responsavel = responsavelService.carregarResponsavel(registroImportacao);
+                responsavel = responsavelService.salvar(responsavel);
+                System.out.println(responsavel.getDisplay());
+            } catch (BusinessException bx) {
+                System.out.println(bx.getMessage());
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    public List<RegistroImportacao> converterRegistro(File file) {
         try {
             FileInputStream arquivo = new FileInputStream(file);
             XSSFWorkbook workbook = new XSSFWorkbook(arquivo);
@@ -51,7 +72,7 @@ public class UploadFileService {
     private RegistroImportacao inconsistencia(RegistroImportacao registroImportacao) {
         String nomeAluno = registroImportacao.getNomeAluno();
         String cpfResponsavel = registroImportacao.getCpfResponsavel();
-        
+
         if (CPFValidator.validatorCPF(cpfResponsavel)) {
             registroImportacao.setInconsistenciaEnum(InconsistenciaEnum.CPF);
         }

@@ -27,8 +27,11 @@
                                           onstart="console.log('Iniciando envio de arquivo')"
                                           onerror="console.log('Erro na requisição de envio')"
                                           oncomplete="console.log('Envio concluído')" />
-
                             <br/>
+
+
+
+
                             <p:dataTable id="dataTableUpdateFaile" value="#{uploadedFileMb.fileList}" var="file" emptyMessage="Registro não encontrado.">
                                 <p:column headerText="Nome">
                                     <h:outputText value="#{file.name}" />
@@ -50,6 +53,8 @@
                             </p:dataTable>
 
                             <br/>
+
+
                             <p:dataTable id="dataTableRegistroImportacao"
                                          value="#{uploadedFileMb.registro.registroImportacaoList}"
                                          var="registroImportacao" 

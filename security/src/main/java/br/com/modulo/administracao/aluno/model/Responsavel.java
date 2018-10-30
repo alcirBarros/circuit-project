@@ -16,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "tbresponsaveis")
@@ -26,12 +27,16 @@ public class Responsavel implements Serializable {
     @Column(name = "tbresponsaveis_id", nullable = false)
     private Integer id;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @Column(name = "nome", scale = 100, nullable = false)
+    private String nome;
+
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "tbpessoas_id", unique = true, referencedColumnName = "tbpessoas_id")
     private Pessoa pessoa;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "tbusuarios_id", unique = true, referencedColumnName = "tbusuarios_id")
+    @Transient
+//    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+//    @JoinColumn(name = "tbusuarios_id", unique = true, referencedColumnName = "tbusuarios_id")
     private Usuario usuario;
 
     @OneToMany(mappedBy = "responsavel", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -91,6 +96,14 @@ public class Responsavel implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public Pessoa getPessoa() {

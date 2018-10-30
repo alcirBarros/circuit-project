@@ -2,7 +2,6 @@ package br.com.modulo.administracao.aluno.model;
 
 import java.io.Serializable;
 import java.util.Objects;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,7 +20,7 @@ public class Aluno implements Serializable {
     @Column(name = "tbcadastro_alunos_id", nullable = false)
     private Integer id;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne
     @JoinColumn(name = "tbpessoas_id", unique = true, referencedColumnName = "tbpessoas_id")
     private Pessoa pessoa;
 
