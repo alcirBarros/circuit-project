@@ -1,4 +1,4 @@
-    /*** TEMA PRIMEFACES ***/
+/*** TEMA PRIMEFACES ***/
 
 
 .ui-helper-hidden { display: none; }
@@ -206,8 +206,8 @@
 .ui-icon-minusthick { background-position: -64px -128px; }
 .ui-icon-close { background-position: -80px -128px; }
 .ui-icon-closethick { margin-left: 20px !important; 
-                     background-image: url(../resources/images/ui-icons_cd0a0a_256x240.png) !important; 
-                     background-position: -96px -128px; }
+                      background-image: url(../resources/images/ui-icons_cd0a0a_256x240.png) !important; 
+                      background-position: -96px -128px; }
 .ui-icon-key { background-position: -112px -128px; }
 .ui-icon-lightbulb { background-position: -128px -128px; }
 .ui-icon-scissors { background-position: -144px -128px; }
@@ -389,34 +389,34 @@
  * http://docs.jquery.com/UI/Menu#theming
  */
 .ui-menu {
-	list-style:none;
-	padding: 2px;
-	margin: 0;
-	display:block;
-	float: left;
+    list-style:none;
+    padding: 2px;
+    margin: 0;
+    display:block;
+    float: left;
 }
 .ui-menu .ui-menu {
-	margin-top: -3px;
+    margin-top: -3px;
 }
 .ui-menu .ui-menu-item {
-	margin:0;
-	padding: 0;
-	zoom: 1;
-	float: left;
-	clear: left;
-	width: 100%;
+    margin:0;
+    padding: 0;
+    zoom: 1;
+    float: left;
+    clear: left;
+    width: 100%;
 }
 .ui-menu .ui-menu-item a {
-	text-decoration:none;
-	display:block;
-	padding:.2em .4em;
-	line-height:1.5;
-	zoom:1;
+    text-decoration:none;
+    display:block;
+    padding:.2em .4em;
+    line-height:1.5;
+    zoom:1;
 }
 .ui-menu .ui-menu-item a.ui-state-hover,
 .ui-menu .ui-menu-item a.ui-state-active {
-	font-weight: normal;
-	margin: -1px;
+    font-weight: normal;
+    margin: -1px;
 }
 /*
  * jQuery UI Button 1.8.16
@@ -604,7 +604,7 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
  */
 .ui-progressbar { height:2em; text-align: left; }
 .ui-progressbar .ui-progressbar-value {margin: -1px; height:100%; }
-                        
+
 
 /* */
 /* .ui-fieldset-legend { background: none; margin: 0 !important; padding: 0 !important; } */ 
@@ -617,7 +617,8 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
 .ui-selectfield { font-size: 12px !important; height: 22px !important; padding: 1px !important; }
 .ui-state-default { font-size: 12px !important; }
 
-.ui-datatable table { width: auto !important; }
+.ui-datatable table {border-collapse: collapse; width: 100%; table-layout: fixed; }
+
 .ui-paginator { width: 980px;}
 
 .ui-datagrid-content { border: 0px !important; }

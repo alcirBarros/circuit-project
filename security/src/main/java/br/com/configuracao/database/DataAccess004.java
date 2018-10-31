@@ -47,17 +47,17 @@ public class DataAccess004 {
     public DriverManagerDataSource dataBase01() throws Exception {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/educafacil_setebarras");
         dataSource.setUsername("root");
         dataSource.setPassword("root");
-        dataSource.setSchema("educafacil_setebarras");
         return dataSource;
     }
 
     @Bean
-    public DefaultPersistenceUnitManager defaultPersistenceUnitManager() {
+    public DefaultPersistenceUnitManager defaultPersistenceUnitManager(@Qualifier("dataBase01") DataSource dataSource) {
         DefaultPersistenceUnitManager defaultPersistenceUnitManager = new DefaultPersistenceUnitManager();
         defaultPersistenceUnitManager.setDefaultPersistenceUnitName("PERSISTENCE-UNIT");
+        defaultPersistenceUnitManager.setDefaultDataSource(dataSource);
         return defaultPersistenceUnitManager;
     }
 
