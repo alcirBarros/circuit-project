@@ -1,7 +1,7 @@
 package br.com.modulo.administracao.aluno.dao;
 
 import br.com.modulo.administracao.aluno.model.Aluno;
-import br.com.modulo.administracao.uploadedfile.model.RegistroImportacao;
+import br.com.modulo.administracao.registroimportacao.model.RegistroImportacao;
 import com.exception.BusinessException;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;

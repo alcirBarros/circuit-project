@@ -22,6 +22,10 @@
         <h:form id="formMessagens">
             <p:messages id="versionMessages" closable="true" escape="false" showDetail="true"/>
             <p:growl id="growlMessages" showDetail="true" autoUpdate="true" />
+            <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+            <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+                <p:graphicImage name="/images/ajaxloadingbar.gif" />
+            </p:dialog>
         </h:form>
         <ui:insert name="body"/>
         <ui:insert name="bodyFooter">

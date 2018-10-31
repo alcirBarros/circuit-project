@@ -7,7 +7,7 @@ import br.com.modulo.administracao.aluno.model.Usuario;
 import br.com.modulo.administracao.aluno.service.AlunoService;
 import br.com.modulo.administracao.pessoa.service.PessoaService;
 import br.com.modulo.administracao.responsavel.dao.ResponsavelDAO;
-import br.com.modulo.administracao.uploadedfile.model.RegistroImportacao;
+import br.com.modulo.administracao.registroimportacao.model.RegistroImportacao;
 import br.com.modulo.administracao.usuario.service.UsuarioService;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;

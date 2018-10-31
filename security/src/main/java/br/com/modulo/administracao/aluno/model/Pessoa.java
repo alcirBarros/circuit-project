@@ -1,6 +1,6 @@
 package br.com.modulo.administracao.aluno.model;
 
-import br.com.modulo.administracao.uploadedfile.model.RegistroImportacao;
+import br.com.modulo.administracao.registroimportacao.model.RegistroImportacao;
 import com.exception.BusinessException;
 import java.io.Serializable;
 import java.util.Objects;

@@ -1,8 +1,8 @@
 package br.com.modulo.administracao.uploadedfile.controller;
 
 import br.com.configuracao.util.ArquivoUtil;
-import br.com.modulo.administracao.uploadedfile.model.Registro;
-import br.com.modulo.administracao.uploadedfile.model.RegistroImportacao;
+import br.com.modulo.administracao.registroimportacao.model.Registro;
+import br.com.modulo.administracao.registroimportacao.model.RegistroImportacao;
 import br.com.modulo.administracao.uploadedfile.service.UploadFileService;
 import java.io.File;
 import java.io.FileInputStream;
@@ -31,7 +31,9 @@ public class UploadedFileMb {
 
     private List<File> fileList = new ArrayList<>();
     private StreamedContent streamedContent;
-
+    
+    
+    private List<Registro> registroList = new ArrayList<>();
     private Registro registro = new Registro();
 
     @PostConstruct

@@ -1,7 +1,7 @@
 package br.com.modulo.administracao.usuario.service;
 
 import br.com.modulo.administracao.aluno.model.Usuario;
-import br.com.modulo.administracao.uploadedfile.model.RegistroImportacao;
+import br.com.modulo.administracao.registroimportacao.model.RegistroImportacao;
 import br.com.modulo.administracao.usuario.dao.UsuarioDAO;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;

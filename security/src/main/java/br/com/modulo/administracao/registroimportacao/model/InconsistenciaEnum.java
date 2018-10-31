@@ -1,4 +1,4 @@
-package br.com.modulo.administracao.uploadedfile.model;
+package br.com.modulo.administracao.registroimportacao.model;
 
 public enum InconsistenciaEnum {
 

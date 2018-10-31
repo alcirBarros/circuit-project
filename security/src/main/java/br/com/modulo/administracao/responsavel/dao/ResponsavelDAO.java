@@ -20,7 +20,11 @@ public class ResponsavelDAO {
     public Responsavel salvar(Responsavel responsavel) {
         try {
             responsavel.setNome("aaaaaaaaaaaa");
-            em.persist(responsavel);
+            if (responsavel.getId() == null) {
+                em.persist(responsavel);
+            } else {
+                responsavel = em.merge(responsavel);
+            }
             return responsavel;
         } catch (Exception e) {
             e.printStackTrace();
@@ -40,7 +44,7 @@ public class ResponsavelDAO {
             query.append("where ");
             query.append("    pss.tbpessoas_nome like :nome ");
             Query createNativeQuery = em.createNativeQuery(query.toString(), Responsavel.class);
-            createNativeQuery.setParameter("nome", ""+nome);
+            createNativeQuery.setParameter("nome", "" + nome);
             return (Responsavel) createNativeQuery.getSingleResult();
         } catch (NoResultException e) {
             return null;

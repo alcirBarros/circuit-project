@@ -50,7 +50,7 @@ public class DataAccess004 {
         dataSource.setUrl("jdbc:mysql://localhost:3306/");
         dataSource.setUsername("root");
         dataSource.setPassword("root");
-        dataSource.setSchema("java-servlet-faces");
+        dataSource.setSchema("educafacil_setebarras");
         return dataSource;
     }
 

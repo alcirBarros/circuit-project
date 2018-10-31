@@ -1,7 +1,7 @@
 package br.com.modulo.administracao.aluno.model;
 
 
-import br.com.modulo.administracao.uploadedfile.model.RegistroImportacao;
+import br.com.modulo.administracao.registroimportacao.model.RegistroImportacao;
 import java.io.Serializable;
 import java.text.Normalizer;
 import java.util.Objects;
