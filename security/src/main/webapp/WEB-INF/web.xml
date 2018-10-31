@@ -47,7 +47,6 @@
         <param-value>theme</param-value> 
     </context-param>-->
     
-    
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>

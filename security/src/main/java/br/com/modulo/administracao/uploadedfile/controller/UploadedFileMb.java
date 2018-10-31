@@ -80,6 +80,7 @@ public class UploadedFileMb {
             fileList = new ArrayList<>(ArquivoUtil.listar());
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Upload completo", "O arquivo " + arquivo.getName() + " foi salvo!"));
         } catch (Exception e) {
+            e.printStackTrace();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Erro", e.getMessage()));
         }
     }

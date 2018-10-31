@@ -70,18 +70,27 @@ public class UploadFileService {
     }
 
     private RegistroImportacao inconsistencia(RegistroImportacao registroImportacao) {
-        String nomeAluno = registroImportacao.getNomeAluno();
-        String cpfResponsavel = registroImportacao.getCpfResponsavel();
+        try {
+            String nomeAluno = registroImportacao.getNomeAluno();
+            String nomeResponsavel = registroImportacao.getNomeResponsavel();
+            String cpfResponsavel = registroImportacao.getCpfResponsavel();
 
-        if (CPFValidator.validatorCPF(cpfResponsavel)) {
-            registroImportacao.setInconsistenciaEnum(InconsistenciaEnum.CPF);
-        }
+            if (CPFValidator.validatorCPF(cpfResponsavel)) {
+                registroImportacao.setInconsistenciaEnum(InconsistenciaEnum.CPF);
+            }
 
-        Aluno aluno = alunoService.carregar(registroImportacao);
-        if (aluno == null || nomeAluno.trim().equals("")) {
-            registroImportacao.setInconsistenciaEnum(InconsistenciaEnum.ALUNO_NAO_CADASTRADO);
+            Aluno aluno = alunoService.carregar(registroImportacao);
+            if (aluno == null || nomeAluno.trim().equals("")) {
+                registroImportacao.setInconsistenciaEnum(InconsistenciaEnum.ALUNO_NAO_CADASTRADO);
+            }
+            if (nomeResponsavel == null || nomeResponsavel.trim().equals("")) {
+                registroImportacao.setInconsistenciaEnum(InconsistenciaEnum.RESPOVESAL_NAO_INFORMADO);
+            }
+            return registroImportacao;
+        } catch (Exception e) {
+            registroImportacao.setInconsistenciaEnum(InconsistenciaEnum.EXCEPTION);
+            return registroImportacao;
         }
-        return registroImportacao;
     }
 
     private boolean validaRegistro(RegistroImportacao registroImportacao) {
@@ -96,15 +105,16 @@ public class UploadFileService {
         RegistroImportacao registroImportacao = new RegistroImportacao();
         while (cellIterator.hasNext()) {
             Cell cell = cellIterator.next();
+            String trim = cell.getStringCellValue().trim();
             switch (cell.getColumnIndex()) {
                 case 0:
-                    registroImportacao.setNomeAluno(cell.getStringCellValue());
+                    registroImportacao.setNomeAluno(trim);
                     break;
                 case 1:
-                    registroImportacao.setNomeResponsavel(cell.getStringCellValue());
+                    registroImportacao.setNomeResponsavel(trim);
                     break;
                 case 2:
-                    registroImportacao.setCpfResponsavel(cell.getStringCellValue());
+                    registroImportacao.setCpfResponsavel(trim);
                     break;
             }
         }

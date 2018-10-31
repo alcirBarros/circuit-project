@@ -38,9 +38,9 @@ public class ResponsavelDAO {
             query.append("        inner join ");
             query.append("    tbpessoas pss on rsp.tbpessoas_id = pss.tbpessoas_id ");
             query.append("where ");
-            query.append("    pss.tbpessoas_nome = :nome ");
+            query.append("    pss.tbpessoas_nome like :nome ");
             Query createNativeQuery = em.createNativeQuery(query.toString(), Responsavel.class);
-            createNativeQuery.setParameter("nome", nome);
+            createNativeQuery.setParameter("nome", ""+nome);
             return (Responsavel) createNativeQuery.getSingleResult();
         } catch (NoResultException e) {
             return null;
