@@ -6,6 +6,10 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 
+
+    <f:metadata>
+        <f:viewAction action="#{uploadedFileMb.carregarTela()}"  />
+    </f:metadata>
     <ui:composition template="/pages/templete/templete.xhtml">
         <ui:define name="body">
             <h:form id="formEdicao">
@@ -20,32 +24,33 @@
                                           cancelLabel="Cancelar" 
                                           sizeLimit="102400"
                                           invalidSizeMessage="O tamanho máximo permitido é de 1KB."
-                                          fileLimit="1"
+                                          fileLimit="3"
                                           fileLimitMessage="Só é possível escolher 1 arquivos por vez."
-                                          multiple="false" 
+                                          multiple="true" 
                                           auto="false"
                                           onstart="console.log('Iniciando envio de arquivo')"
                                           onerror="console.log('Erro na requisição de envio')"
                                           oncomplete="console.log('Envio concluído')" />
                             <br/>
 
-
-
-
-                            <p:dataTable id="dataTableUpdateFaile" value="#{uploadedFileMb.fileList}" var="file" emptyMessage="Registro não encontrado.">
+                            <p:dataTable id="dataTableUpdateFaile" 
+                                         value="#{uploadedFileMb.registro.uploadedRegistroList}"
+                                         rowKey="#{uploadedRegistro.randomId}"
+                                         var="uploadedRegistro" 
+                                         emptyMessage="Registro não encontrado.">
                                 <p:column headerText="Nome">
-                                    <h:outputText value="#{file.name}" />
+                                    <h:outputText value="#{uploadedRegistro.uploaded.arquivo.name}" />
                                 </p:column>
 
                                 <p:column style="width: 100px ;text-align: center">
                                     <p:commandButton value="Baixar" ajax="false"
-                                                     actionListener="#{uploadedFileMb.descarregar(file)}">
+                                                     actionListener="#{uploadedFileMb.descarregar(uploadedRegistro.uploaded.arquivo)}">
                                         <p:fileDownload value="#{uploadedFileMb.getStreamedContent}" />
                                     </p:commandButton>
                                 </p:column>
                                 <p:column style="width: 100px ;text-align: center">
                                     <p:commandButton value="Excluir" 
-                                                     action="#{uploadedFileMb.excluir(file)}"
+                                                     action="#{uploadedFileMb.excluir(uploadedRegistro.uploaded.arquivo)}"
                                                      process="@this"
                                                      update="@form">
                                     </p:commandButton>
@@ -93,19 +98,31 @@
                             <p:dataExporter type="xls" target=":formEdicao:tabView:dataTableRegistroImportacao" fileName="inconsistencia"   />
                         </p:commandButton>
                     </p:tab>
-                    <p:tab title="Histórico" >
+                    <p:tab title="Histórico" rendered="false" >
+                        <p:dataTable id="dataTableHistorico"
+                                     value="#{uploadedFileMb.registroList}"
+                                     var="registroImportacao" 
+                                     rowKey="#{registroImportacao.randomId}"
+                                     emptyMessage="Registro não encontrado.">
 
+                            <p:column headerText="Código">
+                                <h:outputText value="#{registroImportacao.id}" />
+                            </p:column>
+             
+                        </p:dataTable>
                     </p:tab>
                 </p:tabView>
                 <h:panelGrid columns="6">
                     <p:commandButton value="Inserir" 
                                      action="#{uploadedFileMb.inserir()}"
-
                                      class="btn btn-primary" />
+
                     <p:commandButton value="Salvar" 
                                      action="#{uploadedFileMb.salvar()}" 
+                                     actionListener="#{uploadedFileMb.converterFileRegistroImportacao()}"
+                                     class="btn btn-success"
+                                     update="@form :formMessagens"/>
 
-                                     class="btn btn-success" />
                     <p:commandButton value="Alterar" 
                                      action="#{uploadedFileMb.alterar()}"
 

@@ -58,7 +58,7 @@ public class Usuario implements Serializable {
     }
 
     public static String removerCaracteresEspeciais(String str) {
-        return Normalizer.normalize(str, Normalizer.Form.NFD).replaceAll("[^a-zZ-Z1-9 ]", "");
+        return Normalizer.normalize(str, Normalizer.Form.NFD).replaceAll("[.-]", "");
     }
 
     public Integer getId() {

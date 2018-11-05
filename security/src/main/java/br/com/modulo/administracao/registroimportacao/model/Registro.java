@@ -1,7 +1,7 @@
 package br.com.modulo.administracao.registroimportacao.model;
 
 import br.com.configuracao.scoped.AbstractEntidade;
-import java.io.File;
+import br.com.modulo.administracao.uploadedfile.model.Uploaded;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +24,8 @@ public class Registro extends AbstractEntidade implements Serializable {
     @Column(name = "rgt_id", nullable = false)
     private Integer id;
 
-    @Column(name = "rgt_arquivo")
-    private File arquivo;
+    @OneToMany(mappedBy = "registro", orphanRemoval = true, cascade = CascadeType.ALL)
+    private List<UploadedRegistro> uploadedRegistroList = new ArrayList<>();
 
     @OneToMany(mappedBy = "registro", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<RegistroImportacao> registroImportacaoList = new ArrayList<>();
@@ -39,14 +39,21 @@ public class Registro extends AbstractEntidade implements Serializable {
         this.id = id;
     }
 
-    public File getArquivo() {
-        return arquivo;
+    public void adcionarUploaded(Uploaded arquivo) {
+        UploadedRegistro uploadedRegistro = new UploadedRegistro();
+        uploadedRegistro.setRegistro(this);
+        uploadedRegistro.setUploaded(arquivo);
+        uploadedRegistroList.add(uploadedRegistro);
     }
 
-    public void setArquivo(File arquivo) {
-        this.arquivo = arquivo;
+    public List<UploadedRegistro> getUploadedRegistroList() {
+        return uploadedRegistroList;
     }
 
+    public void setUploadedRegistroList(List<UploadedRegistro> uploadedRegistroList) {
+        this.uploadedRegistroList = uploadedRegistroList;
+    }
+    
     public List<RegistroImportacao> getRegistroImportacaoList() {
         return registroImportacaoList;
     }

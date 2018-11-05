@@ -3,6 +3,9 @@ package br.com.modulo.administracao.uploadedfile.controller;
 import br.com.configuracao.util.ArquivoUtil;
 import br.com.modulo.administracao.registroimportacao.model.Registro;
 import br.com.modulo.administracao.registroimportacao.model.RegistroImportacao;
+import br.com.modulo.administracao.registroimportacao.model.UploadedRegistro;
+import br.com.modulo.administracao.registroimportacao.service.RegistroImportacaoService;
+import br.com.modulo.administracao.uploadedfile.model.Uploaded;
 import br.com.modulo.administracao.uploadedfile.service.UploadFileService;
 import java.io.File;
 import java.io.FileInputStream;
@@ -27,26 +30,43 @@ import org.springframework.stereotype.Component;
 public class UploadedFileMb {
 
     @Autowired
-    private UploadFileService uploadFileService;
+    private RegistroImportacaoService registroImportacaoService;
 
-    private List<File> fileList = new ArrayList<>();
+//    private List<File> fileList = new ArrayList<>();
     private StreamedContent streamedContent;
-    
-    
+
     private List<Registro> registroList = new ArrayList<>();
     private Registro registro = new Registro();
 
     @PostConstruct
     public void init() {
-        fileList = new ArrayList<>(ArquivoUtil.listar());
+//        fileList = new ArrayList<>(ArquivoUtil.listar());
+    }
+
+    public void carregarTela() {
+        try {
+            registroList = registroImportacaoService.listar();
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Erro", e.getMessage()));
+        }
     }
 
     public void inserir() {
     }
 
     public void salvar() {
-        System.out.println("br.com.modulo.administracao.uploadedfile.controller.uploadedFile.salvar()");
-        fileList = new ArrayList<>(ArquivoUtil.listar());
+        try {
+            if (registro.getId() == null) {
+                registroImportacaoService.salvar(registro);
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Upload completo", "O arquivo foi salvo!"));
+            } else {
+                registro = registroImportacaoService.alterar(registro);
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Upload completo", "O arquivo foi salvo!"));
+            }
+            registroList = registroImportacaoService.listar();
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Erro", e.getMessage()));
+        }
     }
 
     public void alterar() {
@@ -65,10 +85,19 @@ public class UploadedFileMb {
 
     public void processar() {
         try {
-            uploadFileService.processar(registro);
+            registroImportacaoService.processar(registro);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Upload completo", "O arquivo foi salvo!"));
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Erro", e.getMessage()));
+        }
+    }
+
+    public void converterFileRegistroImportacao() {
+        try {
+            List<UploadedRegistro> uploadedRegistroList = registro.getUploadedRegistroList();
+            List<RegistroImportacao> processar = registroImportacaoService.converterRegistro(uploadedRegistroList);
+            registro.setRegistroImportacaoList(processar);
+        } catch (Exception e) {
         }
     }
 
@@ -76,11 +105,10 @@ public class UploadedFileMb {
         try {
             UploadedFile uploadedFile = event.getFile();
             File arquivo = ArquivoUtil.escrever(uploadedFile.getFileName(), uploadedFile.getContents());
-            registro.setArquivo(arquivo);
-            List<RegistroImportacao> processar = uploadFileService.converterRegistro(arquivo);
-            registro.setRegistroImportacaoList(processar);
-            fileList = new ArrayList<>(ArquivoUtil.listar());
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Upload completo", "O arquivo " + arquivo.getName() + " foi salvo!"));
+            Uploaded uploaded = new Uploaded();
+            uploaded.setArquivo(arquivo);
+            registro.adcionarUploaded(uploaded);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Upload completo", "O arquivo " + arquivo.getName()));
         } catch (Exception e) {
             e.printStackTrace();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Erro", e.getMessage()));
@@ -94,14 +122,10 @@ public class UploadedFileMb {
 
     public void excluir(File file) throws IOException {
         ArquivoUtil.excluir(file.getName());
-        fileList = new ArrayList<>(ArquivoUtil.listar());
+//        fileList = new ArrayList<>(ArquivoUtil.listar());
     }
 
     //Get/s e Set/s
-    public List<File> getFileList() {
-        return fileList;
-    }
-
     public StreamedContent getStreamedContent() {
         return streamedContent;
     }
@@ -112,5 +136,9 @@ public class UploadedFileMb {
 
     public void setRegistro(Registro registro) {
         this.registro = registro;
+    }
+
+    public List<Registro> getRegistroList() {
+        return registroList;
     }
 }
