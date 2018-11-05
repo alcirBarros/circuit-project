@@ -98,17 +98,23 @@
                             <p:dataExporter type="xls" target=":formEdicao:tabView:dataTableRegistroImportacao" fileName="inconsistencia"   />
                         </p:commandButton>
                     </p:tab>
-                    <p:tab title="Histórico" rendered="false" >
+                    <p:tab title="Histórico">
                         <p:dataTable id="dataTableHistorico"
                                      value="#{uploadedFileMb.registroList}"
                                      var="registroImportacao" 
                                      rowKey="#{registroImportacao.randomId}"
                                      emptyMessage="Registro não encontrado.">
 
+
                             <p:column headerText="Código">
                                 <h:outputText value="#{registroImportacao.id}" />
                             </p:column>
-             
+                            <p:column headerText="Data Hora">
+                                <h:outputText value="#{registroImportacao.dataHora}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+                                </h:outputText>
+                            </p:column>
+
                         </p:dataTable>
                     </p:tab>
                 </p:tabView>

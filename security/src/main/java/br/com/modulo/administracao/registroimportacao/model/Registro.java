@@ -4,6 +4,7 @@ import br.com.configuracao.scoped.AbstractEntidade;
 import br.com.modulo.administracao.uploadedfile.model.Uploaded;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
@@ -14,6 +15,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "rgt_registro")
@@ -24,6 +27,11 @@ public class Registro extends AbstractEntidade implements Serializable {
     @Column(name = "rgt_id", nullable = false)
     private Integer id;
 
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "rgt_data_hora", nullable = false)
+    private Date dataHora = new Date();
+    
     @OneToMany(mappedBy = "registro", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<UploadedRegistro> uploadedRegistroList = new ArrayList<>();
 
@@ -37,6 +45,14 @@ public class Registro extends AbstractEntidade implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Date getDataHora() {
+        return dataHora;
+    }
+
+    public void setDataHora(Date dataHora) {
+        this.dataHora = dataHora;
     }
 
     public void adcionarUploaded(Uploaded arquivo) {
