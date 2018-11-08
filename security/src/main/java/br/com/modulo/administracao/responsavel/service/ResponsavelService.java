@@ -53,14 +53,15 @@ public class ResponsavelService {
         pessoa = Optional.ofNullable(pessoa).orElse(Pessoa.criarInstanciaResponsavel(registro));
         if (pessoa.getId() == null) {
             pessoaService.salvar(pessoa);
-        }else{
+        } else {
             pessoa = pessoaService.alterar(pessoa);
         }
         Responsavel responsavel = Responsavel.criarInstancia(pessoa);
         Usuario usuario = usuarioService.carregarUsuario(registro);
-        
-        //Erro no sistema de educação
-        usuario.setId(pessoa.getId());
+        if (usuario.getId() == null) {
+            //Erro no sistema de educação
+            usuario.setId(pessoa.getId());
+        }
         responsavel.setUsuario(usuario);
         return responsavel;
     }

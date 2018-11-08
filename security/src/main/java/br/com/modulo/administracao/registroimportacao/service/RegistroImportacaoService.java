@@ -16,6 +16,7 @@ import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import javax.persistence.NoResultException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -45,6 +46,14 @@ public class RegistroImportacaoService {
         return registroImportacaoDAO.listar();
     }
 
+    public Registro localizar(Integer id) {
+        try {
+            return registroImportacaoDAO.localizar(id);
+        } catch (NoResultException e) {
+            throw new BusinessException("Registro não encontrado.");
+        }
+    }
+
     public void processar(Registro registro) {
         List<RegistroImportacao> registroImportacaoList = registro.getRegistroImportacaoList();
 
@@ -63,27 +72,25 @@ public class RegistroImportacaoService {
         }
     }
 
-    public List<RegistroImportacao> converterRegistro(List<UploadedRegistro> uploadedRegistroList) {
+    public List<RegistroImportacao> converterRegistro(File file) {
         try {
             List<RegistroImportacao> registroList = new ArrayList<>();
-            for (UploadedRegistro uploadedRegistro : uploadedRegistroList) {
-                File file = uploadedRegistro.getUploaded().getArquivo();
-                FileInputStream arquivo = new FileInputStream(file);
-                XSSFWorkbook workbook = new XSSFWorkbook(arquivo);
-                XSSFSheet planilha = workbook.getSheetAt(0);
-                Iterator<Row> linhas = planilha.iterator();
-                while (linhas.hasNext()) {
-                    Row linha = linhas.next();
-                    if (linha.getRowNum() > 0) {
-                        Iterator<Cell> cellIterator = linha.cellIterator();
-                        RegistroImportacao registroImportacao = converterTo(cellIterator);
-                        registroImportacao = inconsistencia(registroImportacao);
-                        if (validaRegistro(registroImportacao)) {
-                            registroList.add(registroImportacao);
-                        }
+            FileInputStream arquivo = new FileInputStream(file);
+            XSSFWorkbook workbook = new XSSFWorkbook(arquivo);
+            XSSFSheet planilha = workbook.getSheetAt(0);
+            Iterator<Row> linhas = planilha.iterator();
+            while (linhas.hasNext()) {
+                Row linha = linhas.next();
+                if (linha.getRowNum() > 0) {
+                    Iterator<Cell> cellIterator = linha.cellIterator();
+                    RegistroImportacao registroImportacao = converterTo(cellIterator);
+                    registroImportacao = inconsistencia(registroImportacao);
+                    if (validaRegistro(registroImportacao)) {
+                        registroList.add(registroImportacao);
                     }
                 }
             }
+
             return registroList;
         } catch (Exception e) {
             throw new BusinessException("Arquivo de importação não selecionado.");
@@ -96,7 +103,7 @@ public class RegistroImportacaoService {
             String nomeResponsavel = registroImportacao.getNomeResponsavel();
             String cpfResponsavel = registroImportacao.getCpfResponsavel();
 
-            if (CPFValidator.validatorCPF(cpfResponsavel)) {
+            if ((cpfResponsavel == null || cpfResponsavel.trim().equals("")) || !CPFValidator.validatorCPF(cpfResponsavel)) {
                 registroImportacao.setInconsistenciaEnum(InconsistenciaEnum.CPF);
             }
 
@@ -105,7 +112,8 @@ public class RegistroImportacaoService {
                 registroImportacao.setInconsistenciaEnum(InconsistenciaEnum.ALUNO_NAO_CADASTRADO);
             }
             if (nomeResponsavel == null || nomeResponsavel.trim().equals("")) {
-                registroImportacao.setInconsistenciaEnum(InconsistenciaEnum.RESPOVESAL_NAO_INFORMADO);
+                registroImportacao.setNomeResponsavel("RESPONSÁVEL PELO ALUNO: ".concat(nomeAluno));
+//                registroImportacao.setInconsistenciaEnum(InconsistenciaEnum.RESPOVESAL_NAO_INFORMADO);
             }
             return registroImportacao;
         } catch (Exception e) {

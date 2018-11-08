@@ -18,6 +18,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
@@ -47,6 +48,7 @@ public class UploadedFileMb {
         try {
             registroList = registroImportacaoService.listar();
         } catch (Exception e) {
+            e.printStackTrace();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Erro", e.getMessage()));
         }
     }
@@ -92,15 +94,6 @@ public class UploadedFileMb {
         }
     }
 
-    public void converterFileRegistroImportacao() {
-        try {
-            List<UploadedRegistro> uploadedRegistroList = registro.getUploadedRegistroList();
-            List<RegistroImportacao> processar = registroImportacaoService.converterRegistro(uploadedRegistroList);
-            registro.setRegistroImportacaoList(processar);
-        } catch (Exception e) {
-        }
-    }
-
     public void upload(FileUploadEvent event) {
         try {
             UploadedFile uploadedFile = event.getFile();
@@ -108,6 +101,11 @@ public class UploadedFileMb {
             Uploaded uploaded = new Uploaded();
             uploaded.setArquivo(arquivo);
             registro.adcionarUploaded(uploaded);
+            
+
+            List<RegistroImportacao> registroImportacaoList = registroImportacaoService.converterRegistro(arquivo);
+            registroImportacaoList.stream().forEach(registroImportacao->{registro.adcionarRegistroImportacao(registroImportacao);});
+            
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Upload completo", "O arquivo " + arquivo.getName()));
         } catch (Exception e) {
             e.printStackTrace();
@@ -123,6 +121,15 @@ public class UploadedFileMb {
     public void excluir(File file) throws IOException {
         ArquivoUtil.excluir(file.getName());
 //        fileList = new ArrayList<>(ArquivoUtil.listar());
+    }
+
+    public void selectRegistroEvent(SelectEvent selectEvent) {
+        try {
+            Registro registro = (Registro)selectEvent.getObject();
+            this.registro = registroImportacaoService.localizar(registro.getId());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     //Get/s e Set/s
