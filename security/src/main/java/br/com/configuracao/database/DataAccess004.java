@@ -1,5 +1,6 @@
 package br.com.configuracao.database;
 
+import java.util.Properties;
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -50,8 +52,7 @@ public class DataAccess004 {
         dataSource.setPassword("root");
         return dataSource;
     }
-    
-    
+
     @Bean
     public DefaultPersistenceUnitManager defaultPersistenceUnitManager(@Qualifier("dataBase01") DataSource dataSource) {
         DefaultPersistenceUnitManager defaultPersistenceUnitManager = new DefaultPersistenceUnitManager();
@@ -69,12 +70,18 @@ public class DataAccess004 {
     @Primary
     @Bean(name = "mysqlEntityManagerFactory")
     public LocalContainerEntityManagerFactoryBean entityManagerFactory1(DefaultPersistenceUnitManager persistenceUnitManager, @Qualifier("dataBase01") DataSource dataSource, HibernateJpaVendorAdapter hibernateJpaVendorAdapter) {
-        LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-        em.setPersistenceUnitName("PERSISTENCE-UNIT");
-        em.setPersistenceUnitManager(persistenceUnitManager);
-        em.setDataSource(dataSource);
-        em.setJpaVendorAdapter(hibernateJpaVendorAdapter);
-        return em;
+        LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
+        factory.setPersistenceUnitName("PERSISTENCE-UNIT");
+        factory.setPersistenceUnitManager(persistenceUnitManager);
+        factory.setDataSource(dataSource);
+        factory.setJpaVendorAdapter(hibernateJpaVendorAdapter);
+
+        Properties jpaProperties = new Properties();
+        jpaProperties.put("hibernate.show_sql", "true");
+        jpaProperties.put("hibernate.format_sql", "true");
+        jpaProperties.put("hibernate.default_schema", "educafacil_setebarras");
+        factory.setJpaProperties(jpaProperties);
+        return factory;
     }
 
     @Bean
@@ -88,5 +95,10 @@ public class DataAccess004 {
     @Bean(name = "mysqlTransactionManager")
     public PlatformTransactionManager mysqlTransactionManager(@Qualifier("mysqlEntityManagerFactory") EntityManagerFactory entityManagerFactory) {
         return new JpaTransactionManager(entityManagerFactory);
+    }
+
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceHolderConfigurer() {
+        return new PropertySourcesPlaceholderConfigurer();
     }
 }

@@ -14,7 +14,7 @@
             <h:form id="formEdicao">
                 <p:tabView id="tabView">
                     <p:tab title="Upload Arquivo" >
-                        <h:panelGrid style="width: 100%">
+                        <h:panelGrid id="panelGridEscola" style="width: 100%">
                             <h:outputText value="Escola" />
                             <h:inputText value="#{uploadedFileMb.registro.descricao}" 
                                          required="true"
@@ -24,7 +24,7 @@
                         <br/>
                         <p:fileUpload id="fileUpload"
                                       fileUploadListener="#{uploadedFileMb.upload}"
-                                      update="@form :formMessagens"
+                                      update=":formEdicao:tabView:dataTableUpdateFaile :formEdicao:tabView:dataTableRegistroImportacao :formMessagens"
                                       label="Escolher" 
                                       uploadLabel="Enviar"
                                       cancelLabel="Cancelar" 
@@ -104,8 +104,8 @@
                     <p:tab title="Histórico" >
                         <p:dataTable id="dataTableHistorico"
                                      value="#{uploadedFileMb.registroList}"
-                                     var="registroImportacao" 
-                                     rowKey="#{registroImportacao.randomId}"
+                                     var="registro" 
+                                     rowKey="#{registro.randomId}"
                                      selectionMode="single" 
                                      emptyMessage="Registro não encontrado.">
 
@@ -114,16 +114,19 @@
                                     update="@form"/>
 
                             <p:column headerText="Código">
-                                <h:outputText value="#{registroImportacao.id}" />
+                                <h:outputText value="#{registro.id}" />
+                            </p:column>
+                            <p:column headerText="Escola">
+                                <h:outputText value="#{registro.descricao}" />
                             </p:column>
                             <p:column headerText="Data Hora">
-                                <h:outputText value="#{registroImportacao.dataHora}">
+                                <h:outputText value="#{registro.dataHora}">
                                     <f:convertDateTime pattern="dd/MM/yyyy HH:mm" timeZone="America/Sao_Paulo" />
                                 </h:outputText>
                             </p:column>
 
                             <p:column headerText="Arquivo">
-                                <ui:repeat  var="uploadedRegistro" value="#{registroImportacao.uploadedRegistroList}">
+                                <ui:repeat  var="uploadedRegistro" value="#{registro.uploadedRegistroList}">
                                     <h:outputText value="#{uploadedRegistro.uploaded.arquivo.name}"/><br/>
                                 </ui:repeat>
                             </p:column>
