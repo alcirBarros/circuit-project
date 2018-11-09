@@ -27,9 +27,6 @@ public class Responsavel implements Serializable {
     @Column(name = "tbresponsaveis_id", nullable = false)
     private Integer id;
 
-    @Column(name = "nome", scale = 100, nullable = false)
-    private String nome;
-
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "tbpessoas_id", referencedColumnName = "tbpessoas_id")
     private Pessoa pessoa;
@@ -95,14 +92,6 @@ public class Responsavel implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public Pessoa getPessoa() {

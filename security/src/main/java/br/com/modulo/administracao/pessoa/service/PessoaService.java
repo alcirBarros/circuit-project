@@ -10,7 +10,15 @@ public class PessoaService {
 
     @Autowired
     private PessoaDAO pessoaDAO;
-    
+
+    public void salvar(Pessoa pessoa) {
+        pessoaDAO.salvar(pessoa);
+    }
+
+    public Pessoa alterar(Pessoa pessoa) {
+        return pessoaDAO.alterar(pessoa);
+    }
+
     public Pessoa carregar(String nome) {
         return pessoaDAO.carregar(nome);
     }

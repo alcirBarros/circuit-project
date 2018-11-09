@@ -1,5 +1,6 @@
 package br.com.modulo.administracao.usuario.dao;
 
+import br.com.configuracao.util.StringUtil;
 import br.com.modulo.administracao.aluno.model.Usuario;
 import com.exception.BusinessException;
 import java.text.Normalizer;
@@ -26,7 +27,7 @@ public class UsuarioDAO {
             query.append("WHERE ");
             query.append("    usr.tbusuarios_login = :login ");
             Query createNativeQuery = em.createNativeQuery(query.toString(), Usuario.class);
-            createNativeQuery.setParameter("login", removerCaracteresEspeciais(login));
+            createNativeQuery.setParameter("login", StringUtil.removerCaracteresEspeciais(login));
             return (Usuario) createNativeQuery.getSingleResult();
         } catch (NoResultException e) {
             return null;
@@ -35,7 +36,4 @@ public class UsuarioDAO {
         }
     }
 
-    public static String removerCaracteresEspeciais(String str) {
-        return Normalizer.normalize(str, Normalizer.Form.NFD).replaceAll("[^a-zZ-Z1-9 ]", "");
-    }
 }

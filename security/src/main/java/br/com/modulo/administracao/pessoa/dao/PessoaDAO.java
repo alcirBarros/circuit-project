@@ -7,6 +7,7 @@ import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class PessoaDAO {
@@ -32,5 +33,16 @@ public class PessoaDAO {
             System.out.println("Registro duplicado: " + nome);
             return null;
         }
+    }
+
+    @Transactional
+    public void salvar(Pessoa pessoa) {
+        em.persist(pessoa);
+    }
+
+    @Transactional
+    public Pessoa alterar(Pessoa pessoa) {
+         pessoa = em.merge(pessoa);
+         return pessoa;
     }
 }

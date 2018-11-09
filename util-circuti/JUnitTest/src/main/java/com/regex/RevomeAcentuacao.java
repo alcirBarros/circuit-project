@@ -5,7 +5,7 @@ import java.text.Normalizer;
 public class RevomeAcentuacao {
     
     public static void main(String[] args) {
-        String string = removerAcentuacao("ÇÃÊáśrŕŕéwẃẃś");
+        String string = removerAcentuacao("285.018.018-10");
         System.out.print(string);
     }
 

@@ -19,12 +19,11 @@ public class ResponsavelDAO {
     @Transactional
     public Responsavel salvar(Responsavel responsavel) {
         try {
-            responsavel.setNome("aaaaaaaaaaaa");
-            if (responsavel.getId() == null) {
-                em.persist(responsavel);
-            } else {
+//            if (responsavel.getId() == null) {
+//                em.persist(responsavel);
+//            } else {
                 responsavel = em.merge(responsavel);
-            }
+//            }
             return responsavel;
         } catch (Exception e) {
             e.printStackTrace();

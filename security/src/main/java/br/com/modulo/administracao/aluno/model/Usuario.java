@@ -1,6 +1,7 @@
 package br.com.modulo.administracao.aluno.model;
 
 
+import br.com.configuracao.util.StringUtil;
 import br.com.modulo.administracao.registroimportacao.model.RegistroImportacao;
 import java.io.Serializable;
 import java.text.Normalizer;
@@ -49,17 +50,15 @@ public class Usuario implements Serializable {
 
     public static Usuario criarInstancia(RegistroImportacao registroImportacao) {
         Usuario usuario = criarInstancia();
-        usuario.setApelido(removerCaracteresEspeciais(registroImportacao.getCpfResponsavel()));
-        usuario.setLogin(removerCaracteresEspeciais(registroImportacao.getCpfResponsavel()));
+        usuario.setApelido(StringUtil.removerCaracteresEspeciais(registroImportacao.getCpfResponsavel()));
+        usuario.setLogin(StringUtil.removerCaracteresEspeciais(registroImportacao.getCpfResponsavel()));
         usuario.setSenha("1234mudar");
         usuario.setPerfilId(20);
         usuario.setTipoUsuario("R");
         return usuario;
     }
 
-    public static String removerCaracteresEspeciais(String str) {
-        return Normalizer.normalize(str, Normalizer.Form.NFD).replaceAll("[^a-zZ-Z1-9 ]", "");
-    }
+
 
     public Integer getId() {
         return id;

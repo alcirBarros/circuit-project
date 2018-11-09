@@ -43,7 +43,6 @@ public class ResponsavelService {
 
         String nomeAluno = registroImportacao.getNomeAluno();
         Aluno aluno = alunoService.localizar(nomeAluno);
-//        aluno = alunoService.salvar(aluno);
         responsavel.adicionarAluno(aluno);
         return responsavel;
     }
@@ -52,8 +51,17 @@ public class ResponsavelService {
         String nomeResponsavel = registro.getNomeResponsavel();
         Pessoa pessoa = pessoaService.carregar(nomeResponsavel);
         pessoa = Optional.ofNullable(pessoa).orElse(Pessoa.criarInstanciaResponsavel(registro));
+        if (pessoa.getId() == null) {
+            pessoaService.salvar(pessoa);
+        } else {
+            pessoa = pessoaService.alterar(pessoa);
+        }
         Responsavel responsavel = Responsavel.criarInstancia(pessoa);
         Usuario usuario = usuarioService.carregarUsuario(registro);
+        if (usuario.getId() == null) {
+            //Erro no sistema de educação
+            usuario.setId(pessoa.getId());
+        }
         responsavel.setUsuario(usuario);
         return responsavel;
     }

@@ -23,7 +23,7 @@ public class RegistroImportacao extends AbstractEntidade implements Serializable
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "rgt_id", referencedColumnName = "rgt_id", foreignKey = @ForeignKey(name = "fk_rip_rgt_id"))
+    @JoinColumn(name = "rgt_id", referencedColumnName = "rgt_id", nullable = false, foreignKey = @ForeignKey(name = "fk_rip_rgt_id"))
     private Registro registro;
 
     @Column(name = "rip_nome_aluno")
