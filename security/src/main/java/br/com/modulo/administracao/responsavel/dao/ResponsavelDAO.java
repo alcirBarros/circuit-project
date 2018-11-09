@@ -1,5 +1,6 @@
 package br.com.modulo.administracao.responsavel.dao;
 
+import br.com.configuracao.util.StringUtil;
 import br.com.modulo.administracao.aluno.model.Responsavel;
 import com.exception.BusinessException;
 import javax.persistence.EntityManager;
@@ -19,11 +20,7 @@ public class ResponsavelDAO {
     @Transactional
     public Responsavel salvar(Responsavel responsavel) {
         try {
-//            if (responsavel.getId() == null) {
-//                em.persist(responsavel);
-//            } else {
-                responsavel = em.merge(responsavel);
-//            }
+            responsavel = em.merge(responsavel);
             return responsavel;
         } catch (Exception e) {
             e.printStackTrace();
@@ -43,12 +40,37 @@ public class ResponsavelDAO {
             query.append("where ");
             query.append("    pss.tbpessoas_nome like :nome ");
             Query createNativeQuery = em.createNativeQuery(query.toString(), Responsavel.class);
-            createNativeQuery.setParameter("nome", "" + nome);
+            createNativeQuery.setParameter("nome",  nome);
             return (Responsavel) createNativeQuery.getSingleResult();
         } catch (NoResultException e) {
             return null;
         } catch (NonUniqueResultException rx) {
             System.out.println("Nome duplicado: " + nome);
+            return null;
+        }
+    }
+
+    public Responsavel carregarCPF(String cpf) {
+        try {
+            StringBuilder query = new StringBuilder();
+            
+            
+            
+            query.append("SELECT ");
+            query.append("    rsp.*, pss.tbpessoas_cpf ");
+            query.append("FROM ");
+            query.append("    tbresponsaveis rsp ");
+            query.append("        INNER JOIN ");
+            query.append("    (SELECT pss.tbpessoas_id, REPLACE(REPLACE(pss.tbpessoas_cpf, '-', ''), '.', '') as tbpessoas_cpf FROM tbpessoas pss) pss ON rsp.tbpessoas_id = pss.tbpessoas_id ");
+            query.append("where ");
+            query.append("    pss.tbpessoas_cpf like :cpf ");             
+            Query createNativeQuery = em.createNativeQuery(query.toString(), Responsavel.class);
+            createNativeQuery.setParameter("cpf", StringUtil.removerCaracteresEspeciais(cpf));
+            return (Responsavel) createNativeQuery.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        } catch (NonUniqueResultException rx) {
+            System.out.println("CPF duplicado: " + cpf);
             return null;
         }
     }

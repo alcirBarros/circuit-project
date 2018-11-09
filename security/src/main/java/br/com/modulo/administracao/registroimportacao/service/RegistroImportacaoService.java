@@ -134,7 +134,7 @@ public class RegistroImportacaoService {
         RegistroImportacao registroImportacao = new RegistroImportacao();
         while (cellIterator.hasNext()) {
             Cell cell = cellIterator.next();
-            String trim = cell.getStringCellValue().trim();
+            String trim = tipoRegistro(cell);
             switch (cell.getColumnIndex()) {
                 case 0:
                     registroImportacao.setNomeAluno(trim);
@@ -148,5 +148,20 @@ public class RegistroImportacaoService {
             }
         }
         return registroImportacao;
+    }
+
+    private String tipoRegistro(Cell cell) {
+        switch (cell.getCellType()) {
+            case Cell.CELL_TYPE_STRING:
+                return cell.getStringCellValue().trim();
+            case Cell.CELL_TYPE_NUMERIC:
+                double numeric = cell.getNumericCellValue();
+                return String.valueOf(numeric);
+            case Cell.CELL_TYPE_BOOLEAN:
+                boolean aa = cell.getBooleanCellValue();
+                return String.valueOf(aa);
+            default:
+        }
+        return "";
     }
 }

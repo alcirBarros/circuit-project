@@ -37,8 +37,8 @@ public class ResponsavelService {
     }
 
     public Responsavel carregarResponsavel(RegistroImportacao registroImportacao) {
-        String nomeResponsavel = registroImportacao.getNomeResponsavel();
-        Responsavel responsavel = responsavelDAO.carregar(nomeResponsavel);
+        String cpfResponsavel = registroImportacao.getCpfResponsavel();
+        Responsavel responsavel = responsavelDAO.carregarCPF(cpfResponsavel);
         responsavel = Optional.ofNullable(responsavel).orElse(createResponsavel(registroImportacao));
 
         String nomeAluno = registroImportacao.getNomeAluno();

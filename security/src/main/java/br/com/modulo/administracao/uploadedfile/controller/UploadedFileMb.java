@@ -118,9 +118,9 @@ public class UploadedFileMb {
         streamedContent = new DefaultStreamedContent(inputStream, Files.probeContentType(file.toPath()), file.getName());
     }
 
-    public void excluir(File file) throws IOException {
-        ArquivoUtil.excluir(file.getName());
-//        fileList = new ArrayList<>(ArquivoUtil.listar());
+    public void excluir(UploadedRegistro uploadedRegistro) throws IOException {
+//        ArquivoUtil.excluir(file.getName());
+        registro.excluir(uploadedRegistro);
     }
 
     public void selectRegistroEvent(SelectEvent selectEvent) {

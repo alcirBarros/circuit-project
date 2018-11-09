@@ -53,6 +53,10 @@ public class Registro extends AbstractEntidade implements Serializable {
         uploadedRegistroList.add(uploadedRegistro);
     }
 
+    public void excluir(UploadedRegistro uploadedRegistro) {
+        uploadedRegistroList.remove(uploadedRegistro);
+    }
+
     private RegistroImportacao contenRegistroImportacao(RegistroImportacao registroImportacao) {
         Predicate<RegistroImportacao> predicate;
         predicate = new Predicate<RegistroImportacao>() {
@@ -60,7 +64,7 @@ public class Registro extends AbstractEntidade implements Serializable {
             public boolean test(RegistroImportacao t) {
                 boolean nomeAluno = (t.getNomeAluno() != null && t.getNomeAluno().equals(registroImportacao.getNomeAluno()));
                 boolean nomeResponsavel = (t.getNomeResponsavel() != null && t.getNomeResponsavel().equals(registroImportacao.getNomeResponsavel()));
-                boolean cpfResponsavel =  (t.getCpfResponsavel() != null && t.getCpfResponsavel().equals(registroImportacao.getCpfResponsavel()));
+                boolean cpfResponsavel = (t.getCpfResponsavel() != null && t.getCpfResponsavel().equals(registroImportacao.getCpfResponsavel()));
                 return (nomeAluno && nomeResponsavel && cpfResponsavel);
             }
         };
