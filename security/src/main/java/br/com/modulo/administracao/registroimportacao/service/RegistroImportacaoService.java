@@ -1,6 +1,7 @@
 package br.com.modulo.administracao.registroimportacao.service;
 
 import br.com.configuracao.util.CPFValidator;
+import br.com.configuracao.util.StringUtil;
 import br.com.modulo.administracao.aluno.model.Aluno;
 import br.com.modulo.administracao.aluno.model.Responsavel;
 import br.com.modulo.administracao.aluno.service.AlunoService;
@@ -112,7 +113,7 @@ public class RegistroImportacaoService {
                 registroImportacao.setInconsistenciaEnum(InconsistenciaEnum.ALUNO_NAO_CADASTRADO);
             }
             if (nomeResponsavel == null || nomeResponsavel.trim().equals("")) {
-                registroImportacao.setNomeResponsavel("RESPONSÁVEL PELO ALUNO: ".concat(nomeAluno));
+                registroImportacao.setNomeResponsavel("RESPONSÁVEL");
 //                registroImportacao.setInconsistenciaEnum(InconsistenciaEnum.RESPOVESAL_NAO_INFORMADO);
             }
             return registroImportacao;
@@ -143,7 +144,7 @@ public class RegistroImportacaoService {
                     registroImportacao.setNomeResponsavel(trim);
                     break;
                 case 2:
-                    registroImportacao.setCpfResponsavel(trim);
+                    registroImportacao.setCpfResponsavel(StringUtil.removerCaracteresEspeciais(trim));
                     break;
             }
         }

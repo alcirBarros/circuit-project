@@ -19,7 +19,7 @@ public class PessoaService {
         return pessoaDAO.alterar(pessoa);
     }
 
-    public Pessoa carregar(String nome) {
-        return pessoaDAO.carregar(nome);
+    public Pessoa carregarCPF(String cpf) {
+        return pessoaDAO.carregarCPF(cpf);
     }
 }

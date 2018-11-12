@@ -53,6 +53,16 @@ public class DataAccess004 {
         return dataSource;
     }
 
+//    @Bean(name = "dataBase01")
+//    public DriverManagerDataSource dataBase01() throws Exception {
+//        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+//        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+//        dataSource.setUrl("jdbc:mysql://10.32.138.10:3306/setebarras_producao");
+//        dataSource.setUsername("admindb");
+//        dataSource.setPassword("@Admin2k");
+//        return dataSource;
+//    }
+
     @Bean
     public DefaultPersistenceUnitManager defaultPersistenceUnitManager(@Qualifier("dataBase01") DataSource dataSource) {
         DefaultPersistenceUnitManager defaultPersistenceUnitManager = new DefaultPersistenceUnitManager();

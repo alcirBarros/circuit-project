@@ -53,17 +53,14 @@ public class ResponsavelDAO {
     public Responsavel carregarCPF(String cpf) {
         try {
             StringBuilder query = new StringBuilder();
-            
-            
-            
             query.append("SELECT ");
-            query.append("    rsp.*, pss.tbpessoas_cpf ");
+            query.append("    rsp.*");
             query.append("FROM ");
             query.append("    tbresponsaveis rsp ");
             query.append("        INNER JOIN ");
-            query.append("    (SELECT pss.tbpessoas_id, REPLACE(REPLACE(pss.tbpessoas_cpf, '-', ''), '.', '') as tbpessoas_cpf FROM tbpessoas pss) pss ON rsp.tbpessoas_id = pss.tbpessoas_id ");
+            query.append("    (SELECT pss.tbpessoas_id, REPLACE(REPLACE(REPLACE(pss.tbpessoas_cpf, '-', ''), '.', ''), ' ','') as tbpessoas_cpf FROM tbpessoas pss) pss ON rsp.tbpessoas_id = pss.tbpessoas_id ");
             query.append("where ");
-            query.append("    pss.tbpessoas_cpf like :cpf ");             
+            query.append("    pss.tbpessoas_cpf = :cpf ");             
             Query createNativeQuery = em.createNativeQuery(query.toString(), Responsavel.class);
             createNativeQuery.setParameter("cpf", StringUtil.removerCaracteresEspeciais(cpf));
             return (Responsavel) createNativeQuery.getSingleResult();

@@ -48,8 +48,8 @@ public class ResponsavelService {
     }
 
     private Responsavel createResponsavel(RegistroImportacao registro) {
-        String nomeResponsavel = registro.getNomeResponsavel();
-        Pessoa pessoa = pessoaService.carregar(nomeResponsavel);
+        String cpfResponsavel = registro.getCpfResponsavel();
+        Pessoa pessoa = pessoaService.carregarCPF(cpfResponsavel);
         pessoa = Optional.ofNullable(pessoa).orElse(Pessoa.criarInstanciaResponsavel(registro));
         if (pessoa.getId() == null) {
             pessoaService.salvar(pessoa);
@@ -59,7 +59,6 @@ public class ResponsavelService {
         Responsavel responsavel = Responsavel.criarInstancia(pessoa);
         Usuario usuario = usuarioService.carregarUsuario(registro);
         if (usuario.getId() == null) {
-            //Erro no sistema de educação
             usuario.setId(pessoa.getId());
         }
         responsavel.setUsuario(usuario);

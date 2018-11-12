@@ -1,5 +1,6 @@
 package br.com.modulo.administracao.aluno.model;
 
+import br.com.configuracao.util.StringUtil;
 import br.com.modulo.administracao.registroimportacao.model.RegistroImportacao;
 import com.exception.BusinessException;
 import java.io.Serializable;
@@ -44,7 +45,8 @@ public class Pessoa implements Serializable {
 
     private static String validatorCPF(String cpf) {
         try {
-            return (cpf.length() > 14) ? cpf.substring(0, 14) : cpf;
+            String removerCaracteresEspeciais = StringUtil.removerCaracteresEspeciais(cpf);
+            return (removerCaracteresEspeciais.length() > 14) ? removerCaracteresEspeciais.substring(0, 14) : cpf;
         } catch (Exception e) {
             throw new BusinessException("Registro CPF invalido: " + cpf);
         }
