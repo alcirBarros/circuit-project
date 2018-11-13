@@ -36,7 +36,7 @@ public class Pessoa implements Serializable {
         return pessoa;
     }
 
-    public static Pessoa criarInstanciaResponsavel(RegistroImportacao registroImportacao) {
+    public static Pessoa criarInstancia(RegistroImportacao registroImportacao) {
         Pessoa pessoa = criarInstancia();
         pessoa.setNome(registroImportacao.getNomeResponsavel());
         pessoa.setCpf(validatorCPF(registroImportacao.getCpfResponsavel()));

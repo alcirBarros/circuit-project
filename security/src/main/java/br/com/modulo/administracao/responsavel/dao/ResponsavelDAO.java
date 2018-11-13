@@ -45,8 +45,7 @@ public class ResponsavelDAO {
         } catch (NoResultException e) {
             return null;
         } catch (NonUniqueResultException rx) {
-            System.out.println("Nome duplicado: " + nome);
-            return null;
+            throw new BusinessException("Registro já cadastrado.");
         }
     }
 
@@ -67,8 +66,7 @@ public class ResponsavelDAO {
         } catch (NoResultException e) {
             return null;
         } catch (NonUniqueResultException rx) {
-            System.out.println("CPF duplicado: " + cpf);
-            return null;
+            throw new BusinessException("Registro já cadastrado.");
         }
     }
 }

@@ -61,8 +61,9 @@ public class RegistroImportacaoService {
         for (RegistroImportacao registroImportacao : registroImportacaoList) {
             try {
                 if (registroImportacao.getInconsistenciaEnum().getValue().equals(InconsistenciaEnum.SEM_INCONSISTENCIA.getValue())) {
-                    Responsavel responsavel = responsavelService.carregarResponsavel(registroImportacao);
-                    responsavel = responsavelService.salvar(responsavel);
+
+                    Responsavel responsavel = responsavelService.salvar(registroImportacao);
+
                     System.out.println(responsavel.getDisplay());
                 }
             } catch (BusinessException bx) {

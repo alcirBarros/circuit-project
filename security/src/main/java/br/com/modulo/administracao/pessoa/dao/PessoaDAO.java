@@ -2,6 +2,7 @@ package br.com.modulo.administracao.pessoa.dao;
 
 import br.com.configuracao.util.StringUtil;
 import br.com.modulo.administracao.aluno.model.Pessoa;
+import com.exception.BusinessException;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
@@ -23,8 +24,7 @@ public class PessoaDAO {
 
     @Transactional
     public Pessoa alterar(Pessoa pessoa) {
-        pessoa = em.merge(pessoa);
-        return pessoa;
+        return em.merge(pessoa);
     }
 
     public Pessoa carregarCPF(String cpf) {
@@ -42,8 +42,7 @@ public class PessoaDAO {
         } catch (NoResultException e) {
             return null;
         } catch (NonUniqueResultException rx) {
-            rx.printStackTrace();
-            return null;
+            throw new BusinessException("Registro duplicado");
         }
     }
 }

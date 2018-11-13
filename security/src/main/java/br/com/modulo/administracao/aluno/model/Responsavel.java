@@ -43,17 +43,11 @@ public class Responsavel implements Serializable {
         return responsavel;
     }
 
-    public static Responsavel criarInstancia(Responsavel responsavel) {
-        responsavel = Optional.ofNullable(responsavel).orElse(criarInstancia());
-        return responsavel;
-    }
-
-    public static Responsavel criarInstancia(Pessoa pessoa) {
-        pessoa = Optional.ofNullable(pessoa).orElse(Pessoa.criarInstancia(pessoa));
-        Responsavel responsavel = criarInstancia();
-        responsavel.setPessoa(pessoa);
-        return responsavel;
-    }
+//    public static Responsavel criarInstancia(Pessoa pessoa) {
+//        Responsavel responsavel = criarInstancia();
+//        responsavel.setPessoa(pessoa);
+//        return responsavel;
+//    }
 
     public boolean contens(Aluno aluno) {
         Predicate<ResponsavelAluno> predicate = new Predicate<ResponsavelAluno>() {
