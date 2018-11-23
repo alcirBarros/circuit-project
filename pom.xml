@@ -27,6 +27,7 @@
         <module>integracao-jsf-spring</module>
         <module>principal_jsf</module>
         <module>web-service</module>
+        <module>maven</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
