@@ -70,7 +70,7 @@
     </build>
     
 
-    
+    <!--mvn clean package -Pprod-->
     <profiles>
         <profile>
             <id>dev</id>
