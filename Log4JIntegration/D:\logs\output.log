@@ -1,0 +1,6 @@
+2018-12-07 18:35:36 FATAL Log4JIntegration:16 - Log level; for com.ashish.log4jIntegration package is : WARN
+2018-12-07 18:35:36 WARN  Log4JIntegration:20 - WARN: Rank 3
+2018-12-07 18:35:36 ERROR Log4JIntegration:21 - ERROR: Rank 2
+2018-12-07 18:35:36 FATAL Log4JIntegration:22 - FATAL: Rank 1
+2018-12-07 18:35:36 FATAL AnotherClass:13 - Log level; for com.ashish.anotherpackage package is : FATAL
+2018-12-07 18:35:36 FATAL AnotherClass:19 - FATAL: Rank 1
