@@ -1,0 +1,296 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:metadata>
+        <f:viewAction action="#{consultarFichaAlunoMb.carregarTela()}"  />
+    </f:metadata>
+    <ui:composition template="/pages/templete/templete.xhtml">
+        <ui:define name="body">
+            <h:form id="formEdicao">
+                <p:tabView id="tabView">
+                    <p:tab id="tabConsultarFichaAluno" title="Consultar Ficha Aluno" >    
+
+                        <p:fieldset legend="Registro">
+                            <h:panelGrid>
+                                <h:panelGrid id="panelGridHeader" columns="2" >
+
+                                    <h:panelGrid id="panelGridCodigo" > 
+                                        <p:outputLabel value="Código" />
+                                        <p:inputText id="inputTextCodigo" value="#{consultarFichaAlunoMb.consultarFichaAluno.outProcessoID}" disabled="true"  />
+                                    </h:panelGrid>
+
+                                    <h:panelGrid >
+                                        <p:outputLabel value="Sucesso" />
+                                        <p:inputText value="#{consultarFichaAlunoMb.consultarFichaAluno.outSucesso}" disabled="true" style="width: 100%" />
+                                    </h:panelGrid>
+                                </h:panelGrid>
+
+                                <h:panelGrid id="panelGridErro">
+                                    <p:outputLabel value="Erro" />
+                                    <p:inputText value="#{consultarFichaAlunoMb.consultarFichaAluno.outErro}" disabled="true" style="width: 100%;" />
+                                </h:panelGrid>
+
+                            </h:panelGrid>
+                        </p:fieldset>  
+
+                        <div style="height:1px; border:none; color:#000; background-color:#4297d7; margin-top: 15px; margin-bottom: 10px;"/>
+
+
+                        <p:fieldset legend="Consultar Documento">
+                            <h:panelGrid>
+
+                                <p:fieldset legend="Registro Geral (RG)" >
+                                    <h:panelGrid id="panelGridConsultaRegistroGeral" columns="3" >
+                                        <h:panelGrid > 
+                                            <p:outputLabel value="Número" />
+                                            <p:inputText value="#{consultarFichaAlunoMb.consultarFichaAluno.consultaDocumentos.inNumRG}"/>
+                                        </h:panelGrid>
+
+                                        <h:panelGrid> 
+                                            <p:outputLabel value="Digito" />
+                                            <p:inputText value="#{consultarFichaAlunoMb.consultarFichaAluno.consultaDocumentos.inDigitoRG}"/>
+                                        </h:panelGrid>
+
+                                        <h:panelGrid > 
+                                            <p:outputLabel value="UF" />
+                                            <p:inputText value="#{consultarFichaAlunoMb.consultarFichaAluno.consultaDocumentos.inUFRG}" />
+                                        </h:panelGrid>                                    
+                                    </h:panelGrid>
+                                </p:fieldset>
+                                <h:panelGrid columns="3" >
+
+                                    <p:fieldset legend="Cadastro Pessoa Física (CPF)">
+                                        <h:panelGrid style="width: 100%"> 
+                                            <p:outputLabel value="Número" />
+                                            <p:inputText value="#{consultarFichaAlunoMb.consultarFichaAluno.consultaDocumentos.inCPF}"/>
+                                        </h:panelGrid>
+                                    </p:fieldset>
+                                    <p:fieldset legend="Instituto Nacional de Estudos e Pesquisas  (INEP)">
+                                        <h:panelGrid> 
+                                            <p:outputLabel value="Número" />
+                                            <p:inputText value="#{consultarFichaAlunoMb.consultarFichaAluno.consultaDocumentos.inNumINEP}"/>
+                                        </h:panelGrid>
+                                    </p:fieldset>
+
+                                    <p:fieldset legend="Número de Identificação Social (NIS)">
+                                        <h:panelGrid> 
+                                            <p:outputLabel value="Número" />
+                                            <p:inputText value="#{consultarFichaAlunoMb.consultarFichaAluno.consultaDocumentos.inNumNIS}" style="width: 100%"/>
+                                        </h:panelGrid>
+                                    </p:fieldset>                          
+
+                                </h:panelGrid>
+
+                                <p:fieldset legend="Certidão Nascimento" >
+                                    <h:panelGrid columns="4">
+                                        <h:panelGrid> 
+                                            <p:outputLabel value="Número" />
+                                            <p:inputText value="#{consultarFichaAlunoMb.consultarFichaAluno.consultaDocumentos.inNumCertidaoNasc}"/>
+                                        </h:panelGrid>
+                                        <h:panelGrid> 
+                                            <p:outputLabel value="Número Novo" />
+                                            <p:inputText value="#{consultarFichaAlunoMb.consultarFichaAluno.consultaDocumentos.inNumCertidaoNova}" />
+                                        </h:panelGrid>
+                                        <h:panelGrid> 
+                                            <p:outputLabel value="Livro" />
+                                            <p:inputText value="#{consultarFichaAlunoMb.consultarFichaAluno.consultaDocumentos.inLivroCertidaoNasc}" />
+                                        </h:panelGrid>
+                                        <h:panelGrid> 
+                                            <p:outputLabel value="Folha" />
+                                            <p:inputText value="#{consultarFichaAlunoMb.consultarFichaAluno.consultaDocumentos.inFolhaCertidaoNasc}"/>
+                                        </h:panelGrid>
+                                    </h:panelGrid> 
+                                </p:fieldset>
+
+                            </h:panelGrid> 
+                        </p:fieldset>
+
+                        <p:fieldset legend="Consultar Fonetica">
+                            <h:panelGrid columns="3">
+                                <p:fieldset legend="Aluno">
+                                    <h:panelGrid columns="2">
+                                        <h:panelGrid> 
+                                            <p:outputLabel value="Nome" />
+                                            <p:inputText value="#{consultarFichaAlunoMb.consultarFichaAluno.consultaFonetica.inNomeAluno}"/>
+                                        </h:panelGrid>
+                                        <h:panelGrid> 
+                                            <p:outputLabel value="Nome Social" />
+                                            <p:inputText value="#{consultarFichaAlunoMb.consultarFichaAluno.consultaFonetica.inNomeSocial}" style="width: 100%"/>
+                                        </h:panelGrid>
+                                    </h:panelGrid> 
+                                </p:fieldset>
+                                <p:fieldset legend="Mãe">
+                                    <h:panelGrid> 
+                                        <p:outputLabel value="Nome" />
+                                        <p:inputText value="#{consultarFichaAlunoMb.consultarFichaAluno.consultaFonetica.inNomeMae}" style="width: 100%"/>
+                                    </h:panelGrid>
+                                </p:fieldset>
+
+                                <p:fieldset legend="Data Nascimento">
+                                    <h:panelGrid columns="3">
+                                        <h:panelGrid> 
+                                            <p:outputLabel value="Dia" />
+                                            <p:inputText value="#{consultarFichaAlunoMb.consultarFichaAluno.consultaFonetica.inDiaNascimento}"/>
+                                        </h:panelGrid>
+                                        <h:panelGrid> 
+                                            <p:outputLabel value="Mês" />
+                                            <p:inputText value="#{consultarFichaAlunoMb.consultarFichaAluno.consultaFonetica.inMesNascimento}"/>
+                                        </h:panelGrid>
+                                        <h:panelGrid> 
+                                            <p:outputLabel value="Ano" />
+                                            <p:inputText value="#{consultarFichaAlunoMb.consultarFichaAluno.consultaFonetica.inAnoNascimento}" style="width: 100%"/>
+                                        </h:panelGrid>
+                                    </h:panelGrid>
+                                </p:fieldset>
+                            </h:panelGrid>
+
+                        </p:fieldset>
+
+                        <p:fieldset legend="Nome Completo">
+                            <h:panelGrid columns="3">
+                                <h:panelGrid> 
+                                    <p:outputLabel value="Aluno" />
+                                    <p:inputText value="#{consultarFichaAlunoMb.consultarFichaAluno.consultaNomeCompleto.inNomeComplAluno}"/>
+                                </h:panelGrid>
+                                <h:panelGrid> 
+                                    <p:outputLabel value="Mãe" />
+                                    <p:inputText value="#{consultarFichaAlunoMb.consultarFichaAluno.consultaNomeCompleto.inNomeComplMae}"/>
+                                </h:panelGrid>
+                                <h:panelGrid> 
+                                    <p:outputLabel value="Pai" />
+                                    <p:inputText value="#{consultarFichaAlunoMb.consultarFichaAluno.consultaNomeCompleto.inNomeComplPai}"/>
+                                </h:panelGrid>
+                            </h:panelGrid>
+                        </p:fieldset>
+
+                        <p:fieldset legend="Consultar Registro Aluno (RA)">
+                            <h:panelGrid id="panelGridConsultaRa">
+                                <h:panelGrid columns="3" >
+                                    <h:panelGrid > 
+                                        <p:outputLabel value="RA" />
+                                        <p:inputText value="#{consultarFichaAlunoMb.consultarFichaAluno.consultaRA.inRA}"/>
+                                    </h:panelGrid>
+
+                                    <h:panelGrid >
+                                        <p:outputLabel value="Digito" />
+                                        <p:inputText value="#{consultarFichaAlunoMb.consultarFichaAluno.consultaRA.inDigitoRA}"/>
+                                    </h:panelGrid>
+
+                                    <h:panelGrid >
+                                        <p:outputLabel value="UF" />
+                                        <p:inputText value="#{consultarFichaAlunoMb.consultarFichaAluno.consultaRA.inUF}" style="width: 100%"/>
+                                    </h:panelGrid>
+                                </h:panelGrid>
+                            </h:panelGrid>
+                        </p:fieldset>
+
+
+                        <p:commandButton value="Localizar" action="#{consultarFichaAlunoMb.localizar()}" update="@form" style="width: 100%"/>
+
+                        <p:dataTable 
+                            value="#{consultarFichaAlunoMb.consultarFichaAluno.fichaAlunoList}"
+                            var="listaAlunos" 
+                            emptyMessage="Registro não encontrado.">
+
+                            <p:column headerText="RA" style="text-align: center; width: 125px;">
+                                <h:outputText value="#{listaAlunos.outRA}" />
+                            </p:column>
+                            <p:column headerText="Nome" >
+                                <h:outputText value="#{listaAlunos.outNomeAluno}" />
+                            </p:column>
+
+                            <p:column headerText="Data Nascimento" style="text-align: center; width: 125px">
+                                <h:outputText value="#{listaAlunos.outDataNascimento}" />
+                            </p:column>
+
+                            <p:column headerText="Data Alteração" style="text-align: center; width: 125px">
+                                <h:outputText value="#{listaAlunos.outDataAlteracao}" />
+                            </p:column>
+
+                            <p:column headerText="CPF" style="text-align: center; width: 150px">
+                                <h:outputText value="#{listaAlunos.outCPF}" />
+                            </p:column>
+
+                            <p:column headerText="Código MEC" style="text-align: center">
+                                <h:outputText value="#{listaAlunos.outIdentAlunoMEC}" />
+                            </p:column>
+
+                            <p:column headerText="Latitude" style="text-align: center">
+                                <h:outputText value="#{listaAlunos.outLatitude}" />
+                            </p:column>
+                            <p:column headerText="Longitude" style="text-align: center">
+                                <h:outputText value="#{listaAlunos.outLongitude}" />
+                            </p:column>
+
+                            <p:column headerText="Cidade" style="text-align: center">
+                                <h:outputText value="#{listaAlunos.outCidade}" />
+                            </p:column>
+                        </p:dataTable>
+                    </p:tab>
+                    <p:tab id="tabHistorico" title="Histórico" >
+                        <p:dataTable id="dataTableHistorico"
+                                     var="registro" 
+                                     rowKey="#{registro.randomId}"
+                                     selectionMode="single" 
+                                     emptyMessage="Registro não encontrado.">
+
+                            <p:ajax event="rowSelect"
+                                    listener="#{consultarFichaAlunoMb.selectRegistroEvent}"
+                                    update="@form"/>
+
+                            <p:column headerText="Código">
+                                <h:outputText value="#{registro.id}" />
+                            </p:column>
+                            <p:column headerText="Escola">
+                                <h:outputText value="#{registro.descricao}" />
+                            </p:column>
+                            <p:column headerText="Data Hora">
+                                <h:outputText value="#{registro.dataHora}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy HH:mm" timeZone="America/Sao_Paulo" />
+                                </h:outputText>
+                            </p:column>
+
+                            <p:column headerText="Arquivo">
+                                <ui:repeat  var="uploadedRegistro" value="#{registro.uploadedRegistroList}">
+                                    <h:outputText value="#{uploadedRegistro.uploaded.arquivo.name}"/><br/>
+                                </ui:repeat>
+                            </p:column>
+
+                        </p:dataTable>
+                    </p:tab>
+                </p:tabView>
+                <p:panelGrid columns="6" style="width: 0%">
+                    <p:commandButton value="Inserir" 
+                                     action="#{consultarFichaAlunoMb.inserir()}"
+                                     class="btn btn-primary" />
+
+                    <p:commandButton value="Salvar" 
+                                     action="#{consultarFichaAlunoMb.salvar()}" 
+                                     class="btn btn-success"
+                                     update="@form :formMessagens"/>
+
+                    <p:commandButton value="Alterar" 
+                                     action="#{consultarFichaAlunoMb.alterar()}"
+
+                                     class="btn btn-warning" />
+                    <p:commandButton value="Cancelar" 
+                                     action="#{consultarFichaAlunoMb.cancelar()}"
+                                     class="btn btn-info" />
+                    <p:commandButton value="Excluir"
+                                     action="#{consultarFichaAlunoMb.excluir()}"
+                                     class="btn btn-danger" />
+                    <p:commandButton value="Processar"
+                                     action="#{consultarFichaAlunoMb.processar()}"
+                                     class="btn btn-danger" 
+                                     update=":formMessagens:versionMessages"/>
+                </p:panelGrid>
+            </h:form>
+        </ui:define>
+    </ui:composition>    
+</html>
+

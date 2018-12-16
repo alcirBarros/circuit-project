@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 18, 2016 1:29:07 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="br.com.domain.consultafichaaluno.model.ConsultaNomeCompleto" table="cnc_consulta_nome_completo" dynamic-insert="true" dynamic-update="true">
+        
+        <id name="id" type="java.lang.Integer">
+            <column name="cnc_id" />
+            <generator class="identity" />
+        </id>
+        
+        <property name="inNomeComplAluno" type="java.lang.String">
+            <column name="cnc_nome_aluno" />
+        </property>
+        
+        <property name="inNomeComplMae" type="java.lang.String">
+            <column name="cnc_nome_mae" />
+        </property>
+        
+        <property name="inNomeComplPai" type="java.lang.String">
+            <column name="cnc_nome_pai" />
+        </property>
+        
+    </class>
+</hibernate-mapping>

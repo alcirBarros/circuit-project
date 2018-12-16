@@ -9,3 +9,6 @@
 /hibernate/Column (cópia)/target/
 /hibernate/maps-xml/target/
 /hibernate/entity-xml/target/
+/domain/target/
+/web/target/
+/web-service/target/

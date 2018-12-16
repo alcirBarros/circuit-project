@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 18, 2016 1:29:07 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="br.com.domain.consultafichaaluno.model.ConsultaDocumentos" table="cdc_consulta_documentos" dynamic-insert="true" dynamic-update="true">
+        
+        <id name="id" type="java.lang.Integer">
+            <column name="cdc_id" />
+            <generator class="identity" />
+        </id>
+        
+        <property name="inNumRG" type="java.lang.String">
+            <column name="cdc_numero_registro_geral" />
+        </property>
+        
+        <property name="inDigitoRG" type="java.lang.String">
+            <column name="cdc_digito_registro_geral" />
+        </property>
+        
+        <property name="inUFRG" type="java.lang.String">
+            <column name="cdc_unidade_federativa_registro_geral" />
+        </property>
+        
+        <property name="inCPF" type="java.lang.String">
+            <column name="cdc_cadastro_pessoa_fisica" />
+        </property>
+        
+        <property name="inNumINEP" type="java.lang.String">
+            <column name="cdc_numero_inep" />
+        </property>
+        
+        <property name="inNumNIS" type="java.lang.String">
+            <column name="cdc_numero_nis" />
+        </property>
+        
+        <property name="inNumCertidaoNova" type="java.lang.String">
+            <column name="cdc_numero_certidao_nova" />
+        </property>
+        
+        <property name="inNumCertidaoNasc" type="java.lang.String">
+            <column name="cdc_numero_certidao_nascimento" />
+        </property>
+        
+        <property name="inLivroCertidaoNasc" type="java.lang.String">
+            <column name="cdc_livro_certidao_nascimento" />
+        </property>
+        
+        <property name="inFolhaCertidaoNasc" type="java.lang.String">
+            <column name="cdc_folha_certidao_nascimento" />
+        </property>
+    </class>
+</hibernate-mapping>
