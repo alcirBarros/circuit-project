@@ -12,3 +12,5 @@
 /domain/target/
 /web/target/
 /web-service/target/
+/persistence/target/
+/soap-web-service/target/

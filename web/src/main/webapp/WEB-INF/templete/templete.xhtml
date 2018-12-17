@@ -10,15 +10,26 @@
             <title>#{msg['message.welcome']}</title>
         </ui:insert>
         <h:outputStylesheet library="css" name="main.css"/>
+        <ui:insert name="css" />
+        <style type="text/css">
+            .solicitacao_nao_atendida {
+                /*background-color: #ffc8b4 !important;*/
+                background-image: linear-gradient(to right, #f2f2f2, #d7d7db);
+            }
+        </style>
     </h:head>
 
     <h:body>
+
+
         <ui:insert name="bodyHeader">
             <h:form id="formHeader" >
                 <h:panelGrid class="header" />
             </h:form>
         </ui:insert>
+
         <ui:insert name="bodyMenu"/>
+
         <h:form id="formMessagens">
             <p:messages id="versionMessages" closable="true" escape="false" showDetail="true"/>
             <p:growl id="growlMessages" showDetail="true" autoUpdate="true" />
@@ -27,16 +38,40 @@
                 <p:graphicImage name="/images/ajaxloadingbar.gif" />
             </p:dialog>
         </h:form>
+
         <h:panelGrid id="panelGridBody" style="margin: auto; width: 80%" >
             <ui:insert name="body" />
         </h:panelGrid>
+
         <ui:insert name="bodyFooter">
             <h:form id="formFooter" >
-                <h:panelGrid class="footer" >
-                    <p:outputLabel value="Sistema"/>
-                </h:panelGrid>
+                <p:dataTable value="#{['Secretaria Municipal de Saúde', '1.00.00.00']}" var="registro" class="footer" rowStyleClass="solicitacao_nao_atendida">
+
+                    <p:column />
+                    <p:column headerText="Código">
+                        <p:outputLabel value="#{registro}" />
+                    </p:column>
+                    <p:column headerText="Código">
+                        <p:outputLabel value="#{registro}" />
+                    </p:column>
+                </p:dataTable>
+
+                <!--                <table width="100%" class="footer">
+                                    <tr>
+                                        <td width="10%">&#xA0;</td>
+                                        <td align="center">Secretaria Municipal de Saúde</td>
+                                        <td width="10%" align="right">Versão - &#xA0;#{configuracaoMb.versao}</td>                 
+                                    </tr>
+                                    <tr>
+                                        <td width="10%">&#xA0;</td>
+                                        <td width="10%">&#xA0;</td>
+                                        <td width="10%" align="right">Sistema</td> 
+                                    </tr>
+                                </table>-->
+
             </h:form>
         </ui:insert>
+
     </h:body>
 </html>
 
