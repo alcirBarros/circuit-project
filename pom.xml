@@ -19,11 +19,6 @@
     </properties>
     
     <modules>     
-        <module>domain</module>
-        <module>persistence</module>
-        <module>soap-web-service</module>
-        <module>web-service</module>
-        <module>web</module>
            
         <!--        <module>report</module>
         <module>mqtt</module>
@@ -38,7 +33,7 @@
         <module>principal_jsf</module>
         <module>web-service</module>
         <module>maven</module>-->
-
+        <module>web-project</module>
     </modules>
     
     <dependencies>
