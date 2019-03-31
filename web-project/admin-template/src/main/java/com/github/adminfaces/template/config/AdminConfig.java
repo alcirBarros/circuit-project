@@ -1,5 +1,6 @@
 package com.github.adminfaces.template.config;
 
+
 import static com.github.adminfaces.template.util.Assert.has;
 import com.github.adminfaces.template.util.Constants;
 import java.io.IOException;
@@ -14,8 +15,9 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 /**
- * Holds global application configuration
+ * Holds global application configuration 
  *
  * Created by rafael-pestano on 22/11/16.
  */
@@ -49,6 +51,9 @@ public class AdminConfig implements Serializable {
     private boolean renderControlSidebar;
     private boolean leftMenuTemplate;
     private boolean renderMenuSearch;
+    private boolean renderFormAsterisks;
+    private boolean closableLoading;
+    private boolean enableMobileHeader;
     //controlsidebar
     private ControlSidebarConfig controlSidebar;
     private String pageSuffix;
@@ -67,13 +72,13 @@ public class AdminConfig implements Serializable {
                 userConfigFile.load(is);
             }
         } catch (IOException ex) {
-            log.log(Level.WARNING, "Could not load user defined admin template properties. Falling back to default properties.");
+            log.log(Level.WARNING,"Could not load user defined admin template properties. Falling back to default properties.");
         }
 
         try (InputStream isDefault = cl.getResourceAsStream(("config/admin-config.properties"))) {
             adminConfigFile.load(isDefault);
         } catch (IOException ex) {
-            log.log(Level.SEVERE, "Could not load admin template default properties.", ex);
+            log.log(Level.SEVERE,"Could not load admin template default properties.", ex);
         }
 
         loadDefaults();
@@ -83,8 +88,8 @@ public class AdminConfig implements Serializable {
         loginPage = getProperty("admin.loginPage");
         indexPage = getProperty("admin.indexPage");
         dateFormat = getProperty("admin.dateFormat");
-        if (!has(dateFormat)) {
-            dateFormat = ((SimpleDateFormat) DateFormat.getDateTimeInstance()).toLocalizedPattern();
+        if(!has(dateFormat)) {
+            dateFormat =  ((SimpleDateFormat)DateFormat.getDateTimeInstance()).toLocalizedPattern();
         }
         templatePath = getProperty("admin.templatePath");
         breadCrumbMaxSize = Integer.parseInt(getProperty("admin.breadcrumbSize"));
@@ -95,16 +100,19 @@ public class AdminConfig implements Serializable {
         renderBreadCrumb = Boolean.parseBoolean(getProperty("admin.renderBreadCrumb"));
         extensionLessUrls = Boolean.parseBoolean(getProperty("admin.extensionLessUrls"));
         rippleElements = getProperty("admin.rippleElements");
-        enableSlideMenu = Boolean.parseBoolean(getProperty("admin.enableSlideMenu"));
+        enableSlideMenu =  Boolean.parseBoolean(getProperty("admin.enableSlideMenu"));
         skin = getProperty("admin.skin");
         autoShowNavbar = Boolean.parseBoolean(getProperty("admin.autoShowNavbar"));
         autoHideMessages = Boolean.parseBoolean(getProperty("admin.autoHideMessages"));
         iconsEffect = Boolean.parseBoolean(getProperty("admin.iconsEffect"));
-        ignoredResources = getProperty("admin.ignoredResources");
-        loadingImage = getProperty("admin.loadingImage");
-        renderControlSidebar = Boolean.parseBoolean(getProperty("admin.renderControlSidebar"));
+        ignoredResources =  getProperty("admin.ignoredResources");
+        loadingImage =  getProperty("admin.loadingImage");
+        renderControlSidebar =  Boolean.parseBoolean(getProperty("admin.renderControlSidebar"));
         rippleMobileOnly = Boolean.parseBoolean(getProperty("admin.rippleMobileOnly"));
         renderMenuSearch = Boolean.parseBoolean(getProperty("admin.renderMenuSearch"));
+        renderFormAsterisks = Boolean.parseBoolean(getProperty("admin.renderFormAsterisks"));
+        enableMobileHeader = Boolean.parseBoolean(getProperty("admin.enableMobileHeader"));
+        closableLoading = Boolean.parseBoolean(getProperty("admin.closableLoading"));
         messagesHideTimeout = getProperty("admin.messagesHideTimeout");
         leftMenuTemplate = Boolean.parseBoolean(getProperty("admin.controlSidebar.leftMenuTemplate"));
         boolean controlSidebarShowOnMobile = Boolean.parseBoolean(getProperty("admin.controlSidebar.showOnMobile"));
@@ -114,14 +122,13 @@ public class AdminConfig implements Serializable {
         boolean sidebarCollapsed = Boolean.parseBoolean(getProperty("admin.controlSidebar.sidebarCollapsed"));
         boolean fixedControlSidebar = Boolean.parseBoolean(getProperty("admin.controlSidebar.fixed"));
         boolean darkControlSidebarSkin = Boolean.parseBoolean(getProperty("admin.controlSidebar.darkSkin"));
-        controlSidebar = new ControlSidebarConfig(controlSidebarShowOnMobile, fixedLayout, boxedLayout, expandOnHover, sidebarCollapsed, fixedControlSidebar, darkControlSidebarSkin);
+        controlSidebar = new ControlSidebarConfig(controlSidebarShowOnMobile,fixedLayout, boxedLayout, expandOnHover, sidebarCollapsed, fixedControlSidebar, darkControlSidebarSkin);
     }
 
     /**
-     * First tries to load the property from java system properties secondly
-     * looks for the property into user defined admin-config.properties then if
-     * not found load defaults from admin-config.properties provided within
-     * admin-template
+     * First tries to load the property from java system properties
+     * secondly looks for the property into user defined admin-config.properties then if
+     * not found load defaults from admin-config.properties provided within admin-template
      *
      * @param property name
      * @return
@@ -133,22 +140,21 @@ public class AdminConfig implements Serializable {
     }
 
     /**
-     * infer page suffix from index and login page configured in
-     * admin-config.properties
+     * infer page suffix from index and login page configured in admin-config.properties
      *
      * If none is configured then use default suffix: 'xhtml'.
      */
     public String getPageSufix() {
-        if (has(pageSuffix)) {
+        if(has(pageSuffix)) {
             return pageSuffix;
         }
-        if (!has(indexPage) && !has(loginPage)) {
+        if(!has(indexPage) && !has(loginPage)) {
             pageSuffix = Constants.DEFAULT_PAGE_FORMAT;
         }
-        if (has(indexPage)) {
-            pageSuffix = indexPage.substring(indexPage.lastIndexOf('.') + 1);
+        if(has(indexPage)) {
+            pageSuffix = indexPage.substring(indexPage.lastIndexOf('.')+1);
         } else {
-            pageSuffix = indexPage.substring(loginPage.lastIndexOf('.') + 1);
+            pageSuffix = indexPage.substring(loginPage.lastIndexOf('.')+1);
         }
         return pageSuffix;
     }
@@ -156,6 +162,7 @@ public class AdminConfig implements Serializable {
     public void restoreDefaults() {
         loadDefaults();
     }
+
 
     public String getLoginPage() {
         return loginPage;
@@ -217,6 +224,14 @@ public class AdminConfig implements Serializable {
         this.autoHideMessages = autoHideMessages;
     }
 
+    public boolean isRenderFormAsterisks() {
+        return renderFormAsterisks;
+    }
+
+    public void setRenderFormAsterisks(boolean renderFormAsterisks) {
+        this.renderFormAsterisks = renderFormAsterisks;
+    }
+
     public String getMessagesHideTimeout() {
         return messagesHideTimeout;
     }
@@ -235,6 +250,14 @@ public class AdminConfig implements Serializable {
 
     public void setControlSidebar(ControlSidebarConfig controlSidebarConfig) {
         this.controlSidebar = controlSidebarConfig;
+    }
+
+    public boolean isEnableMobileHeader() {
+        return enableMobileHeader;
+    }
+
+    public void setEnableMobileHeader(boolean enableMobileHeader) {
+        this.enableMobileHeader = enableMobileHeader;
     }
 
     public boolean isRippleMobileOnly() {
@@ -361,4 +384,11 @@ public class AdminConfig implements Serializable {
         this.renderControlSidebar = renderControlSidebar;
     }
 
+    public boolean isClosableLoading() {
+        return closableLoading;
+    }
+
+    public void setClosableLoading(boolean closableLoading) {
+        this.closableLoading = closableLoading;
+    }
 }

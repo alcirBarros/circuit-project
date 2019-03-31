@@ -11,13 +11,13 @@
 
     <groupId>com.github.adminfaces</groupId>
     <artifactId>admin-template</artifactId>
-    <version>1.0.0-RC21</version>
+    <version>1.0.1-SNAPSHOT</version>
 
     <name>admin-template</name>
     <url>https://github.com/adminfaces/admin-template</url>
 
     <description>
-        A responsive JSF template based on Admin LTE.
+        A responsive JSF template based on Bootstrap and Admin LTE.
     </description>
 
     <developers>
@@ -55,21 +55,18 @@
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
-            <version>6.2</version>
+            <version>7.0</version>
         </dependency>
-
         <dependency>
             <groupId>org.omnifaces</groupId>
             <artifactId>omnifaces</artifactId>
             <version>2.1</version>
         </dependency>
-
         <dependency>
             <groupId>com.github.adminfaces</groupId>
             <artifactId>admin-theme</artifactId>
-            <version>1.0.0-RC21</version>
+            <version>1.0.0</version>
         </dependency>
-
     </dependencies>
 
     <build>

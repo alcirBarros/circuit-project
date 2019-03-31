@@ -13,15 +13,14 @@
                 </div>
                 <div class="box-body">
                     <p>#{adm['label.expired.message']}.
-                        <a href="#{requestScope['javax.servlet.error.request_uri']}">#{adm['label.expired.click-here']}</a>
+                        <a href="#{sessionScope.requestedUri}">#{adm['label.expired.click-here']}</a>
                     </p>
 
                 </div>
             </div>
         </div>
-        <adm:sidebar collapsed="true"/>
         <h:form>
-            <p:remoteCommand autoRun="true" process="@none" global="false" partialSubmit="true" update="@none" oncomplete="$('body').layout('fix')"/>
+            <p:remoteCommand autoRun="true" process="@none" global="false" partialSubmit="true" update="@none" oncomplete="$('body').layout('fix');window.setTimeout(collapseSidebar, 100);"/>
         </h:form>
     </ui:define>
 

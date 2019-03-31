@@ -1,6 +1,6 @@
 com/github/adminfaces/template/exception/CustomExceptionHandler.class
-com/github/adminfaces/template/session/AdminServletContextListener.class
 com/github/adminfaces/template/model/BreadCrumb.class
+com/github/adminfaces/template/session/AdminServletContextListener.class
 com/github/adminfaces/template/security/LogoutMB.class
 com/github/adminfaces/template/config/AdminConfig.class
 com/github/adminfaces/template/bean/LayoutMB.class
