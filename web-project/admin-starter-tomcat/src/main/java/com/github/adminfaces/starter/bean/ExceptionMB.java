@@ -53,7 +53,12 @@ public class ExceptionMB implements Serializable {
     }
 
     public void throwNullPointerException() {
-        throw new NullPointerException("this is a optimistic lock exception...");
+        
+        String test = null;
+        
+        test.toString();
+        
+//        throw new NullPointerException("this is a optimistic lock exception...");
     }
 
     
