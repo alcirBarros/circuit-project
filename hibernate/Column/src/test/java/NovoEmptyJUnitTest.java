@@ -48,34 +48,41 @@ public class NovoEmptyJUnitTest {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("HibernateDB");
         EntityManager em = entityManagerFactory.createEntityManager();
 
-        {
-            ColumnType columnType = new ColumnType();
-            columnType.setColumnString("AAAAAAAAAAAAAAA");
-            columnType.setColumnInteger(1111111);
-            columnType.setColumnLong(11111111111L);
-            columnType.setColumnBoolean(Boolean.FALSE);
-            columnType.setColumnDataTime(new Date());
-            columnType.setColumnDate(new Date());
-            columnType.setColumnTime(new Date());
-            columnType.setColumnBigInteger(BigInteger.ONE);
-            columnType.setColumnBigDecimal(BigDecimal.ONE);
-            columnType.setDuration(Duration.ofDays(1));
-
-            em.getTransaction().begin();
-            em.persist(columnType);
-            em.getTransaction().commit();
-        }
+//        {
+//            ColumnType columnType = new ColumnType();
+//            columnType.setColumnString("AAAAAAAAAAAAAAA");
+//            columnType.setColumnInteger(1111111);
+//            columnType.setColumnLong(11111111111L);
+//            columnType.setColumnBoolean(Boolean.FALSE);
+//            columnType.setColumnDataTime(new Date());
+//            columnType.setColumnDate(new Date());
+//            columnType.setColumnTime(new Date());
+//            columnType.setColumnBigInteger(BigInteger.ONE);
+//            columnType.setColumnBigDecimal(BigDecimal.ONE);
+//            columnType.setDuration(Duration.ofDays(1));
+//
+//            em.getTransaction().begin();
+//            em.persist(columnType);
+//            em.getTransaction().commit();
+//        }
         {
             ColumnType columnType = em.find(ColumnType.class, 1);
-            columnType.setColumnString("FFFFFFFF55FFFF8888FFFFFf");
+            columnType.setColumnString("bbbbbbbbbbbbbbbbbbbbb");
             em.getTransaction().begin();
             em.merge(columnType);
             em.getTransaction().commit();
         }
 
-        ColumnType find = em.find(ColumnType.class, 1);
+        {
+            ColumnType find = em.find(ColumnType.class, 1);
+            ColumnType columnType = em.find(ColumnType.class, 1);
+            columnType.setColumnString("jjjjjjjjjjjjjjjjjjjjjjj");
+            em.getTransaction().begin();
+            em.merge(columnType);
+            em.getTransaction().commit();
+            System.out.println(find);
+        }
 
-        System.out.println(find);
 //        StringBuilder query = new StringBuilder();
 //        query.append("SELECT ");
 //        query.append("    clm_id,  ");
@@ -97,7 +104,6 @@ public class NovoEmptyJUnitTest {
 //        EntityType<?> entityType = metamodel.entity(TableTypeViw.class);
 //        List<TableTypeViw> resultList = em.createNativeQuery(query.toString(), TableTypeViw.class).getResultList();
 //        System.out.println(resultList.get(0).getColumnString());
-
     }
 
 }

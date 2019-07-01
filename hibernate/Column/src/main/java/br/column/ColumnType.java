@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 @Table(name = "clm_column")
@@ -62,16 +64,17 @@ public class ColumnType implements Serializable {
     @Column(name = "clm_duration")
     private Duration duration;
 
-    
-
-//    @Version
-//    @Column(name = "clm_column_version")
-//    private Long version;
-
     @Version
-    @Column(name = "clm_column_version_date")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date versionDate;
+    @Column(name = "clm_column_version")
+    private Long version;
+    
+    @CreationTimestamp()
+    @Column(name = "clm_creationTimestamp")
+    private Date creationTimestamp;
+
+    @UpdateTimestamp
+    @Column(name = "clm_creation_timestamp_Update")
+    private Date creationTimestampUpdate;
 
     public Integer getId() {
         return id;
@@ -168,6 +171,5 @@ public class ColumnType implements Serializable {
     public void setDuration(Duration duration) {
         this.duration = duration;
     }
-    
-    
+
 }
